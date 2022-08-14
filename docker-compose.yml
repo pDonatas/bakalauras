@@ -2,6 +2,7 @@
 version: '3'
 services:
     laravel.test:
+        container_name: bakis_php
         build:
             context: ./docker/8.1
             dockerfile: Dockerfile
@@ -30,12 +31,12 @@ services:
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: "%"
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 0
+            MARIADB_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MARIADB_ROOT_HOST: "%"
+            MARIADB_DATABASE: '${DB_DATABASE}'
+            MARIADB_USER: '${DB_USERNAME}'
+            MARIADB_PASSWORD: '${DB_PASSWORD}'
+            MARIADB_ALLOW_EMPTY_PASSWORD: 0
         volumes:
             - 'mysql:/opt/bitnami/mariadb'
         networks:
@@ -67,9 +68,7 @@ networks:
     sail:
         driver: bridge
 volumes:
-    sail-mysql:
+    mysql:
         driver: local
     sail-redis:
-        driver: local
-    sail-meilisearch:
         driver: local

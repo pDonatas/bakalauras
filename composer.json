@@ -6,17 +6,21 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "friendsofphp/php-cs-fixer": "^3.9",
         "guzzlehttp/guzzle": "^7.2",
+        "hammerstone/fast-paginate": "^0.1.8",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
+        "laravel/pint": "^1.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.1",
+        "phpro/grumphp": "^1.13",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
@@ -57,7 +61,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "phpro/grumphp": true
         }
     },
     "minimum-stability": "dev",
