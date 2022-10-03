@@ -4,7 +4,6 @@ grumphp:
       config: '.php-cs-fixer.php'
     phpstan:
       configuration: 'phpstan.neon'
-    phpunit: ~
   fixer:
     enabled: true
     fix_by_default: true

@@ -15,7 +15,9 @@ class User extends Authenticatable
     use Notifiable;
 
     public const ROLE_USER = 0;
+
     public const ROLE_BARBER = 1;
+
     public const ROLE_ADMIN = 2;
 
     /**
@@ -27,6 +29,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**

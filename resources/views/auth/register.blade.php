@@ -44,7 +44,16 @@
                                 type="password"
                                 name="password_confirmation" required />
             </div>
-
+            <div>
+                <div class="grid grid-cols-3">
+                    <div>
+                        <x-label for="barber" :value="__('Wanna be a barber?')" />
+                    </div>
+                    <div>
+                        <x-input id="barber" class="form-control" type="checkbox" name="isBarber" :value="old('isBarber')" required autofocus />
+                    </div>
+                </div>
+            </div>
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}

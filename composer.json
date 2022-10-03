@@ -1,14 +1,14 @@
 {
-    "name": "laravel/laravel",
+    "name": "donatas/barber-shop",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "description": "Barber shop system.",
     "require": {
         "php": "^8.0.2",
         "friendsofphp/php-cs-fixer": "^3.9",
         "guzzlehttp/guzzle": "^7.2",
         "hammerstone/fast-paginate": "^0.1.8",
+        "hansschouten/phpagebuilder": "^0.22.0",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.11",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7"
