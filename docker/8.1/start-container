@@ -6,4 +6,5 @@ fi
 
 chmod -R ugo+rw /.composer
 
-exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+service nginx start
+php-fpm
