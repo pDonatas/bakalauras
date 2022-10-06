@@ -11,6 +11,7 @@ services:
             - 'host.docker.internal:host-gateway'
         ports:
             - "8080:80"
+            - "5000:5000"
         volumes:
             - '.:/var/www/html'
         restart: always

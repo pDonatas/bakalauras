@@ -1,5 +1,7 @@
 FROM php:8.1-fpm
 
+USER root
+
 # Install the PHP pdo_mysql extention
 RUN docker-php-ext-install pdo_mysql
 
@@ -10,7 +12,7 @@ RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
 # Install node
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
 # Install yarn
@@ -28,6 +30,6 @@ RUN chmod +x /etc/entrypoint.sh
 
 WORKDIR /var/www/html
 
-EXPOSE 80 443
+EXPOSE 80 443 5000
 
 ENTRYPOINT ["/etc/entrypoint.sh"]
