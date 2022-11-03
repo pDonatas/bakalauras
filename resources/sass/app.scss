@@ -1,3 +1,32 @@
 @import 'bootstrap';
-@import "bootstrap-icons";
 @import 'resources/sass/template/main.scss';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+.right-30 {
+    margin-right: 30px;
+}
+
+.card-default {
+    border: solid 1px var(--color-primary);
+
+    .card-header {
+        background: var(--color-primary);
+    }
+
+    .card-body {
+        background-color: black;
+        border: none;
+    }
+}
+
+.main {
+    margin-top: 130px;
+}
+
+.center {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}

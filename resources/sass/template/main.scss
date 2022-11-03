@@ -460,6 +460,10 @@ h6 {
         visibility: visible;
     }
 
+    .navbar .last-child:hover > ul {
+        margin-left: -141px;
+    }
+
     .navbar .dropdown .dropdown ul {
         top: 0;
         left: calc(100% - 30px);
@@ -1248,7 +1252,7 @@ h6 {
     font-size: 18px;
 }
 
-.hero .btn-get-started {
+.default-button {
     font-family: var(--font-primary);
     font-weight: 400;
     font-size: 14px;
@@ -1262,7 +1266,7 @@ h6 {
     background: var(--color-primary);
 }
 
-.hero .btn-get-started:hover {
+.default-button:hover {
     background: #2cbc85;
 }
 
@@ -1280,20 +1284,12 @@ h6 {
     padding: 30px 0;
     font-size: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
 }
 
 .footer .copyright {
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
-}
-
-.footer .credits {
-    padding-top: 6px;
-    text-align: center;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.footer .credits a {
-    color: var(--color-primary);
 }

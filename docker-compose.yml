@@ -14,7 +14,7 @@ services:
             - "5000:5000"
         volumes:
             - '.:/var/www/html'
-        restart: always
+        restart: on-failure
         networks:
             - sail
         depends_on:

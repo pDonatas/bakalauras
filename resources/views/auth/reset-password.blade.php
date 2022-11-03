@@ -1,48 +1,52 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="tw-w-20 tw-h-20 tw-fill-current tw-text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.main')
+@section('content')
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <div class="card card-default">
+                <div class="card-header">
+                    {{ __('Register') }}
+                </div>
+                <div class="card-body">
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
+                    <form method="POST" action="{{ route('password.update') }}">
+                        @csrf
 
-        <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+                        <!-- Password Reset Token -->
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <!-- Password Reset Token -->
-            <input type="hidden" name="token" value="{{ $request->route('token') }}">
+                        <!-- Email Address -->
+                        <div>
+                            <x-label for="email" :value="__('Email')" />
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+                            <x-input id="email" class="form-control" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                        </div>
 
-                <x-input id="email" class="tw-block tw-mt-1 tw-w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                        <!-- Password -->
+                        <div class="tw-mt-4">
+                            <x-label for="password" :value="__('Password')" />
+
+                            <x-input id="password" class="form-control" type="password" name="password" required />
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="tw-mt-4">
+                            <x-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                            <x-input id="password_confirmation" class="form-control"
+                                                type="password"
+                                                name="password_confirmation" required />
+                        </div>
+
+                        <div class="tw-mt-4">
+                            <x-button class="btn default-button">
+                                {{ __('Reset Password') }}
+                            </x-button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="tw-block tw-mt-1 tw-w-full" type="password" name="password" required />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="tw-block tw-mt-1 tw-w-full"
-                                    type="password"
-                                    name="password_confirmation" required />
-            </div>
-
-            <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
-                <x-button>
-                    {{ __('Reset Password') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+@endsection
