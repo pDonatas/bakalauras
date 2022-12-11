@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Shop extends Model
 {
+    protected $guarded = [];
+
     use HasFactory;
 
     public function owner(): BelongsTo

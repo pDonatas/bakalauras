@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="row justify-content-md-center">
-        <div class="col-md-6 justify-content-md-center">
+        <div class="col-md-4 justify-content-md-center">
             <div class="card card-default">
                 <div class="card-header">
                     {{  __('Forgot Password') }}

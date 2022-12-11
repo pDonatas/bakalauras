@@ -34,7 +34,17 @@
                     <ul>
                         @auth
                             <li><a href="{{ route('index') }}">Dashboard</a></li>
-                            <li><a href="{{ route('logout') }}">Logout</a></li>
+                            @if (auth()->user()->isGranted(\App\Models\User::ROLE_BARBER))
+                                <li><a href="{{ route('admin.index') }}">Admin</a></li>
+                            @endif
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                </form>
+                            </li>
                         @else
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="row justify-content-md-center">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card card-default">
                 <div class="card-header">
                     {{ __('Register') }}

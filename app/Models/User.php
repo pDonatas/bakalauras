@@ -15,9 +15,7 @@ class User extends Authenticatable
     use Notifiable;
 
     public const ROLE_USER = 0;
-
     public const ROLE_BARBER = 1;
-
     public const ROLE_ADMIN = 2;
 
     /**
@@ -54,5 +52,15 @@ class User extends Authenticatable
     public function isGranted(int $role): bool
     {
         return $this->role >= $role;
+    }
+
+    public function getRole(): string
+    {
+        return match ($this->role) {
+            self::ROLE_USER => __('User'),
+            self::ROLE_BARBER => __('Barber'),
+            self::ROLE_ADMIN => __('Admin'),
+            default => __('Unknown'),
+        };
     }
 }

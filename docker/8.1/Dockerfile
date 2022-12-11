@@ -1,14 +1,13 @@
-FROM php:8.1-fpm
+FROM php:8.2-fpm
 
-USER root
+ARG user
+ARG uid
 
 # Install the PHP pdo_mysql extention
 RUN docker-php-ext-install pdo_mysql
 
-RUN apt-get update && apt-get install git -y
-
-# Install the PHP zip
-RUN apt-get update && apt-get install -y libzip-dev zip unzip
+# Install the PHP zip, git
+RUN apt-get update && apt-get install -y libzip-dev zip unzip git
 RUN docker-php-ext-install zip
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -24,18 +23,15 @@ RUN apt-get install -y nodejs
 # Install yarn
 RUN npm install -g yarn
 
-# Install Nginx
-RUN apt-get update && apt-get install -y nginx
+EXPOSE 5000
 
-# Copy nginx config
-COPY docker/8.1/nginx.conf /etc/nginx/sites-available/default
-
-COPY docker/8.1/start-container /etc/entrypoint.sh
-
-RUN chmod +x /etc/entrypoint.sh
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
 
 WORKDIR /var/www/html
 
-EXPOSE 80 443 5000
+COPY . /var/www/html
+RUN chown -R $user:$user /var/www/html
 
-ENTRYPOINT ["/etc/entrypoint.sh"]
+CMD ["php-fpm"]

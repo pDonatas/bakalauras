@@ -25,7 +25,7 @@
 
 @include('components.template.header')
 
-<div class="container-fluid main">
+<div class="container main">
     <main id="main" data-aos="fade" data-aos-delay="1500">
         @yield('content')
     </main>
