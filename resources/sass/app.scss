@@ -4,6 +4,7 @@
 @import "@fortawesome/fontawesome-free/css/fontawesome.css";
 @import "@fortawesome/fontawesome-free/css/brands.css";
 @import "@fortawesome/fontawesome-free/css/solid.css";
+@import "blueimp-gallery/css/blueimp-gallery.min.css";
 
 .right-30 {
     margin-right: 30px;
@@ -72,4 +73,13 @@
         box-shadow: none;
     }
 
+}
+
+.photo-gallery {
+
+}
+
+.modal-content {
+    background-color: black;
+    border: none;
 }

@@ -7,12 +7,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Shop\CreateShopRequest;
 use App\Http\Requests\Shop\UpdateShopRequest;
-use App\Http\Requests\User\UserStoreRequest;
-use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ShopController extends Controller
@@ -46,14 +43,14 @@ class ShopController extends Controller
         return view('admin.shops.edit', compact('shop', 'users'));
     }
 
-    public function update(UpdateShopRequest $request, Shop $shop)
+    public function update(UpdateShopRequest $request, Shop $shop): RedirectResponse
     {
         $shop->update($request->validated());
 
         return redirect()->route('admin.shops.show', $shop);
     }
 
-    public function destroy(Shop $shop)
+    public function destroy(Shop $shop): RedirectResponse
     {
         $shop->delete();
 

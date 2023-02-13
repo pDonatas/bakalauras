@@ -38,21 +38,21 @@
                                 </div>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="https://dummyimage.com/600x400/000/fff" class="d-block" alt="...">
+                                        <img src="https://dummyimage.com/600x400/000/fff" class="d-block" alt="">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>First slide label</h5>
                                             <p>Some representative placeholder content for the first slide.</p>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="https://dummyimage.com/600x400/000/fff" class="d-block" alt="...">
+                                        <img src="https://dummyimage.com/600x400/000/fff" class="d-block" alt="">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>Second slide label</h5>
                                             <p>Some representative placeholder content for the second slide.</p>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="https://dummyimage.com/600x400/000/fff" class="d-block " alt="...">
+                                        <img src="https://dummyimage.com/600x400/000/fff" class="d-block " alt="">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>Third slide label</h5>
                                             <p>Some representative placeholder content for the third slide.</p>
@@ -86,18 +86,20 @@
                                         role="tab" aria-controls="rating-tab-pane" aria-selected="false">
                                         Vertinimai
                                     </a>
-                                    <a
-                                        class="flex-sm-fill text-sm-center nav-link" aria-current="page"
-                                        id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button"
-                                        role="tab" aria-controls="contact-tab-pane" aria-selected="false">
-                                        Kontaktai
-                                    </a>
+                                    @foreach($shop->pages as $page)
+                                        <a
+                                            class="flex-sm-fill text-sm-center nav-link" aria-current="page"
+                                            id="{{ $page->name }}{{ $page->id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ $page->name }}{{ $page->id }}-tab-pane" type="button"
+                                            role="tab" aria-controls="{{ $page->name }}{{ $page->id }}-tab-pane" aria-selected="false">
+                                            {{ $page->name }}
+                                        </a>
+                                    @endforeach
                                 </nav>
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="buttons float-end">
-                                <a href="#" class="btn btn-primary">Vertinti</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Vertinti</a>
                                 <a href="#" class="btn btn-primary">Palyginti</a>
                                 <a href="#" class="btn btn-primary">Pridėti į mėgstamus</a>
                                 <a href="#" class="btn btn-primary">Registruotis</a>
@@ -106,11 +108,55 @@
                     </div>
                     <div class="row">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="about-tab-pane" role="tabpanel" aria-labelledby="about-tab" tabindex="0">Apie</div>
-                            <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">Vertinimai</div>
-                            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">Kontaktai</div>
+                            <div class="tab-pane fade show active" id="about-tab-pane" role="tabpanel" aria-labelledby="about-tab" tabindex="0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="about">
+                                            <h3>Apie</h3>
+                                            {!! $shop->description !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
+                                Vertinimai
+                            </div>
+                            @foreach($shop->pages as $page)
+                                <div class="tab-pane fade" id="{{ $page->name }}{{ $page->id }}-tab-pane" role="tabpanel" aria-labelledby="{{ $page->name }}{{ $page->id }}--tab" tabindex="0">{!! $page->description !!}</div>
+                            @endforeach
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $shop->name }} vertinimas</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ route('vote', $shop->id) }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="rating" class="col-form-label">Vertinimas:</label>
+                            <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="col-form-label">Komentaras:</label>
+                            <textarea class="form-control" id="comment" name="comment" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                            <button type="submit" class="btn btn-primary">Išsaugoti</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

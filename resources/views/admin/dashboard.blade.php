@@ -9,7 +9,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">CPU Traffic</span>
                     <span class="info-box-number">
-                      10
+                      {{ round($cpu, 2) }}
                       <small>%</small>
                     </span>
                 </div>

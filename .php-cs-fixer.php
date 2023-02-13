@@ -15,7 +15,6 @@ return $config
     ->registerCustomFixers(new PhpCsFixerCustomFixers\Fixers())
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
         'no_unused_imports' => true,
         '@Symfony' => true,

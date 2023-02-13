@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\User;
@@ -11,5 +12,6 @@ Route::middleware(['auth', "role:".User::ROLE_BARBER])->group(function () {
         Route::resource('/', AdminController::class);
         Route::resource('users', UserController::class)->names('users');
         Route::resource('shops', ShopController::class)->names('shops');
+        Route::resource('shops.pages', PageController::class)->names('pages');
     });
 });

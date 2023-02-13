@@ -1,6 +1,7 @@
 import _ from 'lodash';
 window._ = _;
 window.bootstrap = import('bootstrap');
+window.gallery = import('blueimp-gallery');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -17,7 +18,6 @@ import jquery from 'jquery';
 window.jquery = window.jQuery = jquery;
 
 import GLightbox from 'glightbox';
-import Swiper from 'swiper';
 import AOS from 'aos';
 
 // Init application
@@ -110,67 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         }));
     }
-
-    /**
-     * Initiate glightbox
-     */
-    const glightbox = GLightbox({
-        selector: '.glightbox'
-    });
-
-    /**
-     * Init swiper slider with 1 slide at once in desktop view
-     */
-    new Swiper('.slides-1', {
-        speed: 600,
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        }
-    });
-
-    /**
-     * Init swiper slider with 3 slides at once in desktop view
-     */
-    new Swiper('.slides-3', {
-        speed: 600,
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-            320: {
-                slidesPerView: 1,
-                spaceBetween: 40
-            },
-
-            1200: {
-                slidesPerView: 3,
-            }
-        }
-    });
 
     /**
      * Animation on scroll function and init

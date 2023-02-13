@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@ecodev/natural-gallery-js@^9.1.4":
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/@ecodev/natural-gallery-js/-/natural-gallery-js-9.1.4.tgz#637049aa58df66eaba480d031e5f6af3431a3adc"
+  integrity sha512-vWZyZPjtg7/eKsPctsqFd+EAWOPmZ9wCs8EFPaRr+7fbRHhtU4m4pCRi078N2bCxyJRUhsUzO4yuXJYc3GcZOg==
+  dependencies:
+    lodash-es "^4.17.21"
+
 "@esbuild/android-arm@0.15.18":
   version "0.15.18"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.15.18.tgz#266d40b8fdcf87962df8af05b76219bc786b4f80"
@@ -215,6 +222,11 @@ binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
+
+blueimp-gallery@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/blueimp-gallery/-/blueimp-gallery-3.4.0.tgz#bc53d9b4bd462b320ef4e5b452ee1e25046cf9b2"
+  integrity sha512-t4zQ8XSlE3IuJK72gd6hnexHMUpndUZYRKcAYv+24TpYGom5YtP5yizWdH2cGwyb0MOTKojkwSWVweTo1rbDEw==
 
 bootstrap-icons@^1.9.1:
   version "1.10.2"
@@ -914,6 +926,11 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
+lightbox@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/lightbox/-/lightbox-0.5.0.tgz#cccd5ffab547cff8efd241f2dd9cc4acdf180b93"
+  integrity sha512-BB6XoNgq+icookOeXt5BVVpEwSxslacmlrBlhsr4PpoahVOBo/lVGShyIl5nlGQ/aMFOC6ULNRUwwtjTJDE/SA==
+
 lilconfig@^2.0.5, lilconfig@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.6.tgz#32a384558bd58af3d4c6e077dd1ad1d397bc69d4"
@@ -925,6 +942,11 @@ locate-path@^6.0.0:
   integrity sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
   dependencies:
     p-locate "^5.0.0"
+
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash.debounce@^4.0.6:
   version "4.0.8"
@@ -1285,7 +1307,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-swiper@^8.4.3:
+swiper@^8.4.5:
   version "8.4.5"
   resolved "https://registry.yarnpkg.com/swiper/-/swiper-8.4.5.tgz#149ca81f67393d3f33abddd0f968fc37e99980b5"
   integrity sha512-zveyEFBBv4q1sVkbJHnuH4xCtarKieavJ4SxP0QEHvdpPLJRuD7j/Xg38IVVLbp7Db6qrPsLUePvxohYx39Agw==
