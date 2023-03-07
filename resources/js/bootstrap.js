@@ -15,7 +15,7 @@ window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 import jquery from 'jquery';
-window.jquery = window.jQuery = jquery;
+window.$ = window.jquery = window.jQuery = jquery;
 
 import GLightbox from 'glightbox';
 import AOS from 'aos';

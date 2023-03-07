@@ -83,3 +83,22 @@
     background-color: black;
     border: none;
 }
+
+.mark {
+    background: none;
+
+    .mark-value {
+        display: block;
+        font-size: 14pt;
+        font-weight: bold;
+        color: gold;
+    }
+
+    .author {
+        font-size: 8pt;
+    }
+
+    .author span::before {
+        content: "Autorius: ";
+    }
+}

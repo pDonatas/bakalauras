@@ -68,7 +68,7 @@
                                 @foreach($shops as $shop)
                                     <tr>
                                         <td>{{ $shop->id }}</td>
-                                        <td>{{ $shop->name }}</td>
+                                        <td>{{ $shop->company_name }}</td>
                                         <td>
                                             <a href="{{ route('admin.shops.edit', $shop->id) }}"><button class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
                                             <a href="{{ route('admin.pages.index', $shop->id) }}"><button class="btn btn-default"><i class="fa-solid fa-file"></i></button></a>

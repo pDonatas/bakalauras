@@ -24,7 +24,7 @@
                                 <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
                                 <div class="mb-3">
                                     <label for="name" class="form-label">{{ __('Name') }}</label>
-                                    <input type="text" name="name" class="form-control" id="name" value="{{ $shop->name }}">
+                                    <input type="text" name="name" class="form-control" id="name" value="{{ $shop->company_name }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">{{ __('Description') }}</label>
