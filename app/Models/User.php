@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -71,8 +72,23 @@ class User extends Authenticatable
         return $this->hasMany(Mark::class);
     }
 
-    public function shops(): HasMany
+    public function ownedShops(): HasMany
     {
-        return $this->HasMany(Shop::class, 'owner_id');
+        return $this->hasMany(Shop::class, 'owner_id');
+    }
+
+    public function shops(): BelongsToMany
+    {
+        return $this->belongsToMany(Shop::class, 'shop_workers', 'worker_id', 'shop_id');
+    }
+
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->isGranted(self::ROLE_ADMIN);
     }
 }

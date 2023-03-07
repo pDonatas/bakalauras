@@ -12,11 +12,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="email">{{ __('Email') }}</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">{{ __('Password') }}</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="{{ __('Password') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="remember_me">

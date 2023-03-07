@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Shops;
 
 use App\Models\Shop;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class ShopsMarks extends Component
+class Services extends Component
 {
     public function __construct(protected readonly Shop $shop)
     {
@@ -15,12 +15,12 @@ class ShopsMarks extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View
      */
     public function render(): View
     {
-        $marks = $this->shop->marks;
+        $services = $this->shop->services;
 
-        return view('components.shops-marks', compact('marks'));
+        return view('components.shops.services', compact('services'));
     }
 }

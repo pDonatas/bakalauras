@@ -8,7 +8,7 @@
             <div class="card card-primary card-outline">
                 <div class="card-header">
                     <div class="card-title">
-                        {{ __('Shops') }}
+                        {{ __('Services') }}
                     </div>
                 </div>
                 <div class="card-body">
@@ -18,7 +18,7 @@
                                 {{ __('Create') }}
                             </div>
                         </div>
-                        <form method="post" action="{{ route('admin.shops.store') }}">
+                        <form method="post" action="{{ route('admin.services.store', $shop->id) }}">
                             @csrf
                             <div class="card-body">
                                 <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
@@ -31,9 +31,13 @@
                                     <textarea name="description" class="form-control" id="description"></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="owner_id" class="form-label">{{ __('Owner') }}</label>
-                                    <select name="owner_id" class="form-control" id="owner_id">
-                                        @foreach ($users as $user)
+                                    <label for="price" class="form-label">{{ __('Price') }}</label>
+                                    <input type="number" step="0.1" name="price" class="form-control" id="price">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user_id" class="form-label">{{ __('Worker') }}</label>
+                                    <select name="user_id" class="form-control" id="user_id">
+                                        @foreach ($shop->workers as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
@@ -46,11 +50,11 @@
                     </div>
                     <div class="card card-secondary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('List of Shops') }}</h3>
+                            <h3 class="card-title">{{ __('List of Services') }}</h3>
 
                             <div class="card-tools">
                                 <ul class="pagination pagination-sm float-end">
-                                    {{ $shops->links() }}
+                                    {{ $services->links() }}
                                 </ul>
                             </div>
                         </div>
@@ -61,19 +65,21 @@
                                 <tr>
                                     <th style="width: 10px">{{ __('ID') }}</th>
                                     <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Price') }}</th>
+                                    <th>{{ __('Worker') }}</th>
                                     <th style="width: 130px">{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($shops as $shop)
+                                @foreach($services as $service)
                                     <tr>
-                                        <td>{{ $shop->id }}</td>
-                                        <td>{{ $shop->company_name }}</td>
+                                        <td>{{ $service->id }}</td>
+                                        <td>{{ $service->name }}</td>
+                                        <td>{{ $service->price }}</td>
+                                        <td>{{ $service->worker->name }}</td>
                                         <td>
-                                            <a href="{{ route('admin.shops.edit', $shop->id) }}"><button title="{{ __('Edit') }}" class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                                            <a href="{{ route('admin.pages.index', $shop->id) }}"><button title="{{ __('Pages') }}" class="btn btn-default"><i class="fa-solid fa-file"></i></button></a>
-                                            <a href="{{ route('admin.services.index', $shop->id) }}"><button title="{{ __('Services') }}" class="btn btn-default"><i class="fa-solid fa-scissors"></i></button></a>
-                                            <a href="#" onclick="deleteItem('{{ route('admin.shops.destroy', $shop->id) }}')"><button title="{{ __('Delete') }}" class="btn btn-default"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
+                                            <a href="{{ route('admin.services.edit', [$shop->id, $service->id]) }}"><button class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                                            <a href="#" onclick="deleteItem('{{ route('admin.services.destroy', [$shop->id, $service->id]) }}')"><button class="btn btn-default"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                         </td>
                                     </tr>
                                 @endforeach

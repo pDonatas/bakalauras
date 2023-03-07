@@ -31,7 +31,13 @@ RUN mkdir -p /home/$user/.composer && \
 
 WORKDIR /var/www/html
 
-COPY . /var/www/html
 RUN chown -R $user:$user /var/www/html
+
+RUN apt install libsodium-dev -y
+RUN docker-php-ext-install bcmath pdo_mysql sodium zip
+
+# Install xdebug
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
 
 CMD ["php-fpm"]

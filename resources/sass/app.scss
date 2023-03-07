@@ -5,6 +5,7 @@
 @import "@fortawesome/fontawesome-free/css/brands.css";
 @import "@fortawesome/fontawesome-free/css/solid.css";
 @import "blueimp-gallery/css/blueimp-gallery.min.css";
+@import "select2/dist/css/select2.min.css";
 
 .right-30 {
     margin-right: 30px;
@@ -13,12 +14,17 @@
 .card-default {
     border: solid 1px var(--color-primary);
 
-    .card-header {
+    .card-header, .card-footer {
         background: var(--color-primary);
     }
 
     .card-body {
         background-color: black;
+        border: none;
+    }
+
+    .card-footer button {
+        background-color: var(--color-secondary);
         border: none;
     }
 }
@@ -101,4 +107,8 @@
     .author span::before {
         content: "Autorius: ";
     }
+}
+
+.select2-results__option--selectable {
+    color: #000;
 }

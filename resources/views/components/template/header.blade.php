@@ -8,7 +8,7 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="{{ route('index') }}" class="active">Home</a></li>
+                <li><a href="{{ route('index') }}" class="active">{{ __('Dashboard') }}</a></li>
                 <li><a href="about.html">About</a></li>
                 <li class="dropdown"><a href="#"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
@@ -33,21 +33,21 @@
                     <a href="#"><span><i class="bi bi-person"></i></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         @auth
-                            <li><a href="{{ route('index') }}">Dashboard</a></li>
+                            <li><a href="{{ route('index') }}">{{ __('Dashboard') }}</a></li>
                             @if (auth()->user()->isGranted(\App\Models\User::ROLE_BARBER))
-                                <li><a href="{{ route('admin.index') }}">Admin</a></li>
+                                <li><a href="{{ route('admin.index') }}">{{ __('Admin') }}</a></li>
                             @endif
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                                        {{ __('Log Out') }}
+                                        {{ __('Logout') }}
                                     </a>
                                 </form>
                             </li>
                         @else
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">{{ __('Log in') }}</a></li>
+                            <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @endauth
                     </ul>
                 </li>

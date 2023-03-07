@@ -19,12 +19,13 @@
                             </div>
                         </div>
                         <form method="post" action="{{ route('admin.shops.update', $shop->id) }}">
+                            @method('PUT')
                             @csrf
                             <div class="card-body">
                                 <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
                                 <div class="mb-3">
                                     <label for="name" class="form-label">{{ __('Name') }}</label>
-                                    <input type="text" name="name" class="form-control" id="name" value="{{ $shop->company_name }}">
+                                    <input type="text" name="company_name" class="form-control" id="name" value="{{ $shop->company_name }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">{{ __('Description') }}</label>
@@ -38,6 +39,17 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="workers" class="form-label">{{ __('Workers') }}</label>
+                                    <select multiple name="workers[]" class="form-control" id="workers">
+                                        @foreach ($users as $user)
+                                            @if($user->id == $shop->owner_id)
+                                                @continue
+                                            @endif
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
@@ -48,4 +60,19 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            const workers = $('#workers');
+
+            workers.select2({
+                placeholder: "{{ __('Select workers') }}",
+                allowClear: true,
+            });
+
+            workers.val(@json($shop->workers->pluck('id')->toArray()));
+            workers.trigger('change');
+        });
+    </script>
 @endsection

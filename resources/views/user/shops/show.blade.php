@@ -23,7 +23,7 @@
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
 
-                                    <span>{{ $shop->marks_count }} vertinimai</span>
+                                    <span>{{ $shop->marks_count }} {{ __('marks') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -87,14 +87,21 @@
                                         id="about-tab" data-bs-toggle="tab" data-bs-target="#about-tab-pane"
                                         type="button"
                                         role="tab" aria-controls="about-tab-pane" aria-selected="true">
-                                        Apie
+                                        {{ __('About') }}
                                     </a>
                                     <a
                                         class="flex-sm-fill text-sm-center nav-link" aria-current="page"
                                         id="rating-tab" data-bs-toggle="tab" data-bs-target="#rating-tab-pane"
                                         type="button"
                                         role="tab" aria-controls="rating-tab-pane" aria-selected="false">
-                                        Vertinimai
+                                        {{ __('Rating') }}
+                                    </a>
+                                    <a
+                                        class="flex-sm-fill text-sm-center nav-link" aria-current="page"
+                                        id="service-tab" data-bs-toggle="tab" data-bs-target="#service-tab-pane"
+                                        type="button"
+                                        role="tab" aria-controls="service-tab-pane" aria-selected="false">
+                                        {{ __('Services') }}
                                     </a>
                                     @foreach($shop->pages as $page)
                                         <a
@@ -119,7 +126,6 @@
                                     <a href="#" class="btn btn-primary">Pridėti į mėgstamus</a>
                                 @endauth
                                 <a href="#" class="btn btn-primary">Palyginti</a>
-                                <a href="#" class="btn btn-primary">Registruotis</a>
                             </div>
                         </div>
                     </div>
@@ -138,7 +144,11 @@
                             </div>
                             <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab"
                                  tabindex="0">
-                                <x-shops-marks :shop="$shop"></x-shops-marks>
+                                <x-shops.marks :shop="$shop"></x-shops.marks>
+                            </div>
+                            <div class="tab-pane fade" id="service-tab-pane" role="tabpanel" aria-labelledby="service-tab"
+                                 tabindex="0">
+                                <x-shops.services :shop="$shop"></x-shops.services>
                             </div>
                             @foreach($shop->pages as $page)
                                 <div class="tab-pane fade" id="{{ $page->name }}{{ $page->id }}-tab-pane"

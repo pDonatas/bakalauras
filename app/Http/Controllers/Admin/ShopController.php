@@ -45,7 +45,12 @@ class ShopController extends Controller
 
     public function update(UpdateShopRequest $request, Shop $shop): RedirectResponse
     {
-        $shop->update($request->validated());
+        $request = $request->validated();
+        $workers = $request['workers'];
+        unset($request['workers']);
+
+        $shop->update($request);
+        $shop->workers()->sync($workers);
 
         return redirect()->route('admin.shops.show', $shop);
     }

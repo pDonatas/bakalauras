@@ -17,6 +17,8 @@ services:
             - "5000:5000"
         volumes:
             - '.:/var/www/html'
+            - './docker/8.1/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini'
+            - './docker/8.1/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini'
         restart: on-failure
         networks:
             - sail
@@ -27,8 +29,8 @@ services:
         container_name: bakis_nginx
         image: bitnami/nginx:latest
         ports:
-            - "8080:80"
-            - "4430:443"
+            - "80:80"
+            - "443:443"
         volumes:
             - '.:/var/www/html'
             - './docker/8.1/nginx.conf:/opt/bitnami/nginx/conf/server_blocks/nginx.conf'
@@ -40,14 +42,14 @@ services:
         container_name: bakis_mysql
         image: 'bitnami/mariadb:latest'
         ports:
-            - '${FORWARD_DB_PORT:-3307}:3306'
+            - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
             MARIADB_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MARIADB_ROOT_HOST: "%"
             MARIADB_DATABASE: '${DB_DATABASE}'
             MARIADB_USER: '${DB_USERNAME}'
             MARIADB_PASSWORD: '${DB_PASSWORD}'
             MARIADB_ALLOW_EMPTY_PASSWORD: 0
+            MARIADB_SKIP_TEST_DB: yes
         volumes:
             - 'mysql:/bitnami/mariadb'
         networks:
