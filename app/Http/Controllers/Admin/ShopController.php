@@ -16,7 +16,11 @@ class ShopController extends Controller
 {
     public function index(): View
     {
-        $shops = Shop::paginate();
+        $shops = auth()->user()->relatedShops()->paginate();
+        if (auth()->user()->isAdmin()) {
+            $shops = Shop::paginate();
+        }
+
         $users = User::where('role', User::ROLE_BARBER)->get();
 
         return view('admin.shops.index', compact('shops', 'users'));
@@ -45,7 +49,12 @@ class ShopController extends Controller
 
     public function update(UpdateShopRequest $request, Shop $shop): RedirectResponse
     {
-        $shop->update($request->validated());
+        $request = $request->validated();
+        $workers = $request['workers'];
+        unset($request['workers']);
+
+        $shop->update($request);
+        $shop->workers()->sync($workers);
 
         return redirect()->route('admin.shops.show', $shop);
     }

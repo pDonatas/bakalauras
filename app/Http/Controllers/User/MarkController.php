@@ -17,6 +17,6 @@ class MarkController extends Controller
             'comment' => $request->comment,
         ]);
 
-        return redirect()->route('shops.show', $shop)->with('success', 'Mark created successfully');
+        return redirect()->route('shop.show', $shop)->with('success', 'Mark created successfully');
     }
 }

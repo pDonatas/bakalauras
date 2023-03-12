@@ -1,6 +1,6 @@
 <!-- Main Footer -->
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-{{ date("Y") }} <a href="{{ config("app.url") }}">{{ config("app.name") }}</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2023-{{ date("Y") }} <a href="{{ config("app.url") }}">{{ config("app.name") }}</a>.</strong> {{ __('All rights reserved.') }}
 </footer>
 
 <div id="deleteModal" class="modal fade" tabindex="-1">
@@ -29,13 +29,11 @@
 
 <!-- overlayScrollbars -->
 <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@1.13.1/js/OverlayScrollbars.min.js" integrity="sha256-7mHsZb07yMyUmZE5PP1ayiSGILxT6KyU+a/kTDCWHA8=" crossorigin="anonymous"></script>
-<!-- Bootstrap 5 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha256-9SEPo+fwJFpMUet/KACSwO+Z/dKMReF9q4zFhU/fT9M=" crossorigin="anonymous"></script>
 
 <!-- REQUIRED SCRIPTS -->
 
 <!-- AdminLTE App -->
-<script src="/assets/admin/js/adminlte.js"></script>
+<script src="{{ asset('/assets/admin/js/adminlte.js') }}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script>
@@ -60,8 +58,6 @@
 
 <!-- ChartJS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
-
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 <script src="https://cdn.tiny.cloud/1/h60jy9aigdsikubgsdndpy2xsz8tbufbi44e2vrsbqccw3n3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>

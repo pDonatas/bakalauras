@@ -1,24 +1,16 @@
 import _ from 'lodash';
+import axios from 'axios';
+import $ from 'jquery';
+import AOS from 'aos';
+import select2 from 'select2';
+
 window._ = _;
 window.bootstrap = import('bootstrap');
-window.gallery = import('blueimp-gallery');
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-import axios from 'axios';
 window.axios = axios;
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-import jquery from 'jquery';
-window.jquery = window.jQuery = jquery;
-
-import GLightbox from 'glightbox';
-import AOS from 'aos';
+window.$ = window.jquery = window.jQuery = $;
+window.gallery = import('blueimp-gallery');
+select2();
 
 // Init application
 document.addEventListener('DOMContentLoaded', () => {

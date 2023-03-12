@@ -9,13 +9,15 @@
         "hammerstone/fast-paginate": "^0.1.8",
         "hansschouten/phpagebuilder": "^0.22.0",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.11",
-        "laravel/framework": "^9.19",
-        "laravel/sanctum": "^3.0",
+        "laravel/framework": "^10.0",
+        "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
         "fakerphp/faker": "^1.9.1",
+        "laravel-lang/common": "^3.1",
+        "laravel-lang/lang": "^12.0",
         "laravel/breeze": "^1.11",
         "laravel/pint": "^1.1",
         "laravel/sail": "^1.0.1",
@@ -24,7 +26,7 @@
         "nunomaduro/larastan": "^2.1",
         "phpro/grumphp": "^1.13",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -67,6 +69,6 @@
             "phpro/grumphp": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

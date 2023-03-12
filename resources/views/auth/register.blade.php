@@ -47,9 +47,31 @@
             <div>
                 <div class="tw-grid tw-grid-cols-3">
                     <div>
-                        <x-label for="barber" :value="__('Wanna be a barber?')" />
+                        <x-label for="barber" :value="__('Registering as company?')" />
                         <x-input id="barber" type="checkbox" name="isBarber" :value="old('isBarber')" autofocus />
                     </div>
+                </div>
+            </div>
+            <div id="barber-fields" class="d-none">
+                <div class="tw-mt-4">
+                    <x-label for="company_name" :value="__('Company name')" />
+
+                    <x-input id="company_name" class="form-control" type="text" name="company_name" :value="old('company_name')" autofocus />
+                </div>
+                <div class="tw-mt-4">
+                    <x-label for="company_code" :value="__('Company code')" />
+
+                    <x-input id="company_code" class="form-control" type="text" name="company_code" :value="old('company_code')" autofocus />
+                </div>
+                <div class="tw-mt-4">
+                    <x-label for="company_address" :value="__('Company address')" />
+
+                    <x-input id="company_address" class="form-control" type="text" name="company_address" :value="old('company_address')" autofocus />
+                </div>
+                <div class="tw-mt-4">
+                    <x-label for="company_phone" :value="__('Company phone')" />
+
+                    <x-input id="company_phone" class="form-control" type="text" name="company_phone" :value="old('company_phone')" autofocus />
                 </div>
             </div>
             <div class="tw-flex tw-items-center tw-justify-end tw-mt-4">
@@ -66,4 +88,20 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script type="module">
+        $('#barber').on('change', function () {
+            const checked = $(this).is(':checked');
+
+            if (checked) {
+                $('#barber-fields').removeClass('d-none');
+                $('#barber-fields input').attr('required', true);
+            } else {
+                $('#barber-fields').addClass('d-none');
+                $('#barber-fields input').attr('required', false);
+            }
+        })
+    </script>
 @endsection

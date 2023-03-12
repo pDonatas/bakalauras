@@ -4,7 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -68,5 +71,46 @@ class User extends Authenticatable
     public function marks(): HasMany
     {
         return $this->hasMany(Mark::class);
+    }
+
+    public function ownedShops(): HasMany
+    {
+        return $this->hasMany(Shop::class, 'owner_id');
+    }
+
+    public function shops(): BelongsToMany
+    {
+        return $this->belongsToMany(Shop::class, 'shop_workers', 'worker_id', 'shop_id');
+    }
+
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->isGranted(self::ROLE_ADMIN);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function relatedShops(): BelongsToMany
+    {
+        return $this->belongsToMany(Shop::class, 'shop_workers', 'worker_id', 'shop_id')
+            ->orWhere('owner_id', $this->id)->groupBy('shop_id');
+    }
+
+    public function providedOrders(): HasManyThrough
+    {
+        return $this->hasManyThrough(Order::class, Service::class, 'user_id', 'service_id', 'id', 'id');
+    }
+
+    public function providedServicesByShop(Shop $shop): HasMany
+    {
+        return $this->services()->where('shop_id', $shop->id);
     }
 }

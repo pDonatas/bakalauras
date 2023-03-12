@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Shop extends Model
 {
+    use HasFactory;
+
     protected $guarded = [];
 
     public function owner(): BelongsTo
@@ -30,5 +32,15 @@ class Shop extends Model
     public function marks(): HasMany
     {
         return $this->hasMany(Mark::class);
+    }
+
+    public function workers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'shop_workers', 'shop_id', 'worker_id');
+    }
+
+    public function services(): HasMany
+    {
+        return $this->hasMany(Service::class);
     }
 }

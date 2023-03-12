@@ -14,8 +14,16 @@ class AdminController
 
     public function index(): View
     {
-        $cpu = $this->dashboardService->getCPUUsage();
+        $shopsCount = 0;
+        $averageRating = 0;
+        $ordersCount = 0;
+        $uniqueClientsCount = 0;
 
-        return view('admin.dashboard', compact('cpu'));
+        return view('admin.dashboard', [
+            'shopsCount' => $shopsCount,
+            'averageRating' => $averageRating,
+            'ordersCount' => $ordersCount,
+            'uniqueClientsCount' => $uniqueClientsCount,
+        ]);
     }
 }

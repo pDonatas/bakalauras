@@ -1,5 +1,7 @@
 @extends('layouts.main')
-@section('title') {{ $shop->name }} @endsection
+@section('title')
+    {{ $shop->name }}
+@endsection
 @section('content')
     <div class="row g-4">
         <!-- Start column -->
@@ -21,7 +23,7 @@
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
 
-                                    <span>7821 vertinimai</span>
+                                    <span>{{ $shop->marks_count }} {{ __('marks') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -30,11 +32,15 @@
                 <div class="card-body shop">
                     <div class="row">
                         <div class="col-md-12">
-                            <div id="carouselExampleCaptions" class="carousel slide shop-top-slide" data-bs-ride="false">
+                            <div id="carouselExampleCaptions" class="carousel slide shop-top-slide"
+                                 data-bs-ride="false">
                                 <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                                            aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                                            aria-label="Slide 3"></button>
                                 </div>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
@@ -59,11 +65,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
@@ -76,21 +84,32 @@
                                 <nav class="nav nav-pills flex-column flex-sm-row">
                                     <a
                                         class="flex-sm-fill text-sm-center nav-link active" aria-current="page"
-                                        id="about-tab" data-bs-toggle="tab" data-bs-target="#about-tab-pane" type="button"
+                                        id="about-tab" data-bs-toggle="tab" data-bs-target="#about-tab-pane"
+                                        type="button"
                                         role="tab" aria-controls="about-tab-pane" aria-selected="true">
-                                        Apie
+                                        {{ __('About') }}
                                     </a>
                                     <a
                                         class="flex-sm-fill text-sm-center nav-link" aria-current="page"
-                                        id="rating-tab" data-bs-toggle="tab" data-bs-target="#rating-tab-pane" type="button"
+                                        id="rating-tab" data-bs-toggle="tab" data-bs-target="#rating-tab-pane"
+                                        type="button"
                                         role="tab" aria-controls="rating-tab-pane" aria-selected="false">
-                                        Vertinimai
+                                        {{ __('Rating') }}
+                                    </a>
+                                    <a
+                                        class="flex-sm-fill text-sm-center nav-link" aria-current="page"
+                                        id="service-tab" data-bs-toggle="tab" data-bs-target="#service-tab-pane"
+                                        type="button"
+                                        role="tab" aria-controls="service-tab-pane" aria-selected="false">
+                                        {{ __('Services') }}
                                     </a>
                                     @foreach($shop->pages as $page)
                                         <a
                                             class="flex-sm-fill text-sm-center nav-link" aria-current="page"
-                                            id="{{ $page->name }}{{ $page->id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ $page->name }}{{ $page->id }}-tab-pane" type="button"
-                                            role="tab" aria-controls="{{ $page->name }}{{ $page->id }}-tab-pane" aria-selected="false">
+                                            id="{{ $page->name }}{{ $page->id }}-tab" data-bs-toggle="tab"
+                                            data-bs-target="#{{ $page->name }}{{ $page->id }}-tab-pane" type="button"
+                                            role="tab" aria-controls="{{ $page->name }}{{ $page->id }}-tab-pane"
+                                            aria-selected="false">
                                             {{ $page->name }}
                                         </a>
                                     @endforeach
@@ -99,16 +118,21 @@
                         </div>
                         <div class="col-md-7">
                             <div class="buttons float-end">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">Vertinti</a>
+                                @auth()
+                                    @if (auth()->user()->marks()->where('shop_id', $shop->id)->doesntExist())
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                           class="btn btn-primary">Vertinti</a>
+                                    @endif
+                                    <a href="#" class="btn btn-primary">Pridėti į mėgstamus</a>
+                                @endauth
                                 <a href="#" class="btn btn-primary">Palyginti</a>
-                                <a href="#" class="btn btn-primary">Pridėti į mėgstamus</a>
-                                <a href="#" class="btn btn-primary">Registruotis</a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="about-tab-pane" role="tabpanel" aria-labelledby="about-tab" tabindex="0">
+                            <div class="tab-pane fade show active" id="about-tab-pane" role="tabpanel"
+                                 aria-labelledby="about-tab" tabindex="0">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="about">
@@ -118,11 +142,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab" tabindex="0">
-                                Vertinimai
+                            <div class="tab-pane fade" id="rating-tab-pane" role="tabpanel" aria-labelledby="rating-tab"
+                                 tabindex="0">
+                                <x-shops.marks :shop="$shop"></x-shops.marks>
+                            </div>
+                            <div class="tab-pane fade" id="service-tab-pane" role="tabpanel" aria-labelledby="service-tab"
+                                 tabindex="0">
+                                <x-shops.services :shop="$shop"></x-shops.services>
                             </div>
                             @foreach($shop->pages as $page)
-                                <div class="tab-pane fade" id="{{ $page->name }}{{ $page->id }}-tab-pane" role="tabpanel" aria-labelledby="{{ $page->name }}{{ $page->id }}--tab" tabindex="0">{!! $page->description !!}</div>
+                                <div class="tab-pane fade" id="{{ $page->name }}{{ $page->id }}-tab-pane"
+                                     role="tabpanel" aria-labelledby="{{ $page->name }}{{ $page->id }}--tab"
+                                     tabindex="0">{!! $page->description !!}</div>
                             @endforeach
                         </div>
                     </div>
@@ -137,27 +168,25 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $shop->name }} vertinimas</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form method="post" action="{{ route('vote', $shop->id) }}">
+                <x-auth-validation-errors />
+                <form method="post" action="{{ route('vote', $shop->id) }}">
+                    <div class="modal-body">
                         @csrf
                         <div class="mb-3">
-                            <label for="rating" class="col-form-label">Vertinimas:</label>
-                            <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
+                            <label for="mark" class="col-form-label">Vertinimas:</label>
+                            <input type="number" class="form-control" id="mark" name="mark" min="1" max="5"
+                                   required>
                         </div>
                         <div class="mb-3">
                             <label for="comment" class="col-form-label">Komentaras:</label>
-                            <textarea class="form-control" id="comment" name="comment" required></textarea>
+                            <textarea class="form-control" id="comment" name="comment"></textarea>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
-                            <button type="submit" class="btn btn-primary">Išsaugoti</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                        <button type="submit" class="btn btn-primary">Išsaugoti</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
