@@ -16,11 +16,33 @@
 
     .card-header, .card-footer {
         background: var(--color-primary);
+
+        .text-muted {
+            color: #fff !important;
+        }
+
+        .pagination {
+            .page-item.active .page-link {
+                background-color: var(--color-primary);
+                border-color: var(--color-primary);
+                color: #fff;
+            }
+
+            .page-link {
+                color: var(--color-primary);
+            }
+        }
     }
 
     .card-body {
         background-color: black;
         border: none;
+
+        .table {
+            background-color: black;
+            border: none;
+            color: #fff;
+        }
     }
 
     .card-footer button {
@@ -111,4 +133,8 @@
 
 .select2-results__option--selectable {
     color: #000;
+}
+
+.background-black {
+    background-color: black;
 }

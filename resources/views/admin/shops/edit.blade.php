@@ -31,6 +31,7 @@
                                     <label for="description" class="form-label">{{ __('Description') }}</label>
                                     <textarea name="description" class="form-control" id="description">{{ $shop->description }}</textarea>
                                 </div>
+                                @if (auth()->user()->isAdmin())
                                 <div class="mb-3">
                                     <label for="owner_id" class="form-label">{{ __('Owner') }}</label>
                                     <select name="owner_id" class="form-control" id="owner_id">
@@ -39,6 +40,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                @else
+                                    <input type="hidden" name="owner_id" value="{{ auth()->user()->id }}">
+                                @endif
                                 <div class="mb-3">
                                     <label for="workers" class="form-label">{{ __('Workers') }}</label>
                                     <select multiple name="workers[]" class="form-control" id="workers">

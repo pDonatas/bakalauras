@@ -16,10 +16,19 @@
                     <a href="{{ route('admin.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>
                         <p>
+                            {{ __('Back to Home') }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>
                             {{ __('Dashboard') }}
                         </p>
                     </a>
                 </li>
+                @if (auth()->user()->isAdmin())
                 <li class="nav-item">
                     <a href="{{ route('admin.users.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -28,11 +37,28 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.shops.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             {{ __('Shops') }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-tag"></i>
+                        <p>
+                            {{ __('Orders') }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.calendar.index') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-calendar-check"></i>
+                        <p>
+                            {{ __('Calendar') }}
                         </p>
                     </a>
                 </li>

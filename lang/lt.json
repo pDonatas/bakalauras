@@ -103,5 +103,19 @@
     "Status": "Būsena",
     "Comment": "Komentaras",
     "List of Orders": "Užsakymų sąrašas",
-    "by": " "
+    "by": " ",
+    "Order Type": "Mokėjimo tipas",
+    "In person": "Grynais",
+    "Back to main": "Grįžti į pagrindinį",
+    "Back to Home": "Grįžti į naudotojo puslapį",
+    "Orders": "Užsakymai",
+    "Paid": "Apmokėta",
+    "Not Paid": "Neapmokėta",
+    "Fulfilled": "Atlikta",
+    "Canceled": "Atšaukta",
+    "Order created successfully": "Užsakymas sėkmingai sukurtas",
+    "Order updated successfully": "Užsakymas sėkmingai atnaujintas",
+    "Order deleted successfully": "Užsakymas sėkmingai ištrintas",
+    "Order not found": "Užsakymas nerastas",
+    "Calendar": "Kalendorius"
 }

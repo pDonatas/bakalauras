@@ -13,6 +13,7 @@
                         {{ $service->name }} {{ __('by') }} {{ $service->worker->name }}
                     </div>
                 </div>
+                <x-auth-validation-errors class="background-black" :errors="$errors" />
                 <form method="post" action="{{ route('orders.store', $service->id) }}">
                     @csrf
                     <div class="card-body">
@@ -27,6 +28,13 @@
                         <div class="form-group">
                             <label for="comment">{{ __('Comment') }}</label>
                             <textarea class="form-control" id="comment" name="comment" rows="3">{{ old('comment') }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="order-type">{{ __('Order Type') }}</label>
+                            <select class="form-control" id="order-type" name="order_type" required>
+                                <option value="1">{{ __('Paysera') }}</option>
+                                <option value="2">{{ __('In person') }}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="card-footer">

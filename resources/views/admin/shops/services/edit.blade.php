@@ -35,14 +35,18 @@
                                     <label for="price" class="form-label">{{ __('Price') }}</label>
                                     <input type="number" step="0.1" name="price" class="form-control" id="price" value="{{ $service->price }}">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="user_id" class="form-label">{{ __('Worker') }}</label>
-                                    <select name="user_id" class="form-control" id="user_id">
-                                        @foreach ($shop->workers as $user)
-                                            <option @if ($user->id === $service->user_id) selected @endif value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                @if (auth()->user()->isAdmin() || $shop->owner_id == auth()->user()->id)
+                                    <div class="mb-3">
+                                        <label for="user_id" class="form-label">{{ __('Worker') }}</label>
+                                        <select name="user_id" class="form-control" id="user_id">
+                                            @foreach ($shop->workers as $user)
+                                                <option @if ($user->id === $service->user_id) selected @endif value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @else
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                @endif
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Edit') }}</button>

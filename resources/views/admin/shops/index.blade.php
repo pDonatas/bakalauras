@@ -30,6 +30,7 @@
                                     <label for="description" class="form-label">{{ __('Description') }}</label>
                                     <textarea name="description" class="form-control" id="description"></textarea>
                                 </div>
+                                @if (auth()->user()->isAdmin())
                                 <div class="mb-3">
                                     <label for="owner_id" class="form-label">{{ __('Owner') }}</label>
                                     <select name="owner_id" class="form-control" id="owner_id">
@@ -38,6 +39,9 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                @else
+                                    <input type="hidden" name="owner_id" value="{{ auth()->user()->id }}">
+                                @endif
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
@@ -70,10 +74,12 @@
                                         <td>{{ $shop->id }}</td>
                                         <td>{{ $shop->company_name }}</td>
                                         <td>
+                                            @if (auth()->user()->isAdmin() || auth()->user()->id == $shop->owner_id)
                                             <a href="{{ route('admin.shops.edit', $shop->id) }}"><button title="{{ __('Edit') }}" class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
                                             <a href="{{ route('admin.pages.index', $shop->id) }}"><button title="{{ __('Pages') }}" class="btn btn-default"><i class="fa-solid fa-file"></i></button></a>
-                                            <a href="{{ route('admin.services.index', $shop->id) }}"><button title="{{ __('Services') }}" class="btn btn-default"><i class="fa-solid fa-scissors"></i></button></a>
                                             <a href="#" onclick="deleteItem('{{ route('admin.shops.destroy', $shop->id) }}')"><button title="{{ __('Delete') }}" class="btn btn-default"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
+                                            @endif
+                                            <a href="{{ route('admin.services.index', $shop->id) }}"><button title="{{ __('Services') }}" class="btn btn-default"><i class="fa-solid fa-scissors"></i></button></a>
                                         </td>
                                     </tr>
                                 @endforeach

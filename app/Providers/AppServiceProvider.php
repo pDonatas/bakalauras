@@ -2,27 +2,24 @@
 
 namespace App\Providers;
 
+use App\Services\Payments\PaymentServiceInterface;
+use App\Services\Payments\PayseraService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
         Paginator::useBootstrapFive();
+
+        $this->app->bind(
+            PaymentServiceInterface::class,
+            PayseraService::class
+        );
     }
 }

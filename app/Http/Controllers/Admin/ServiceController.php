@@ -17,7 +17,12 @@ class ServiceController extends Controller
 {
     public function index(Shop $shop): View
     {
-        $services = $shop->services()->paginate();
+        if (auth()->id() == $shop->owner_id || auth()->user()->isAdmin()) {
+            $services = $shop->services()->paginate();
+        } else {
+            $services = $shop->services()->where('user_id', auth()->id())->paginate();
+        }
+
         return view('admin.shops.services.index', compact('shop', 'services'));
     }
 

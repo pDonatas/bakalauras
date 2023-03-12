@@ -29,4 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'paysera' => [
+        'project_id' => env('PAYSERA_PROJECT_ID'),
+        'sign_password' => env('PAYSERA_PROJECT_PASSWORD'),
+    ],
 ];

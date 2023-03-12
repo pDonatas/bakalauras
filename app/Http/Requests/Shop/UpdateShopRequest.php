@@ -21,6 +21,6 @@ class UpdateShopRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return auth()->check() && auth()->user()->isGranted(User::ROLE_BARBER) && $this->owner_id === auth()->id() || auth()->user()->isGranted(User::ROLE_ADMIN);
+        return auth()->check() && $this->owner_id == auth()->id() || auth()->user()->isGranted(User::ROLE_ADMIN);
     }
 }

@@ -31,12 +31,14 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li class="last-child dropdown">
                     <a href="#"><span><i class="bi bi-person"></i></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
+                    <ul class="main-menu">
                         @auth
                             <li><a href="{{ route('index') }}">{{ __('Dashboard') }}</a></li>
                             @if (auth()->user()->isGranted(\App\Models\User::ROLE_BARBER))
-                                <li><a href="{{ route('admin.index') }}">{{ __('Admin') }}</a></li>
+                                <li><a href="{{ route('admin.index') }}">{{ __('Admin panel') }}</a></li>
                             @endif
+                            <li><a href="{{ route('user.profile') }}">{{ __('Profile') }}</a></li>
+                            <li><a href="{{ route('user.orders') }}">{{ __('Orders') }}</a></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

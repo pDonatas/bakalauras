@@ -421,7 +421,6 @@ h6 {
     .navbar .dropdown ul {
         display: block;
         position: absolute;
-        left: 14px;
         top: calc(100% + 30px);
         margin: 0;
         padding: 10px 0;
@@ -431,6 +430,10 @@ h6 {
         background: var(--color-secondary);
         transition: 0.3s;
         border-radius: 4px;
+
+        &:not(.main-menu) {
+            left: calc(100% - 269px);
+        }
     }
 
     .navbar .dropdown ul li {
