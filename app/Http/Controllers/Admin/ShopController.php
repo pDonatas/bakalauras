@@ -21,7 +21,7 @@ class ShopController extends Controller
             $shops = Shop::paginate();
         }
 
-        $users = User::where('role', User::ROLE_BARBER)->get();
+        $users = User::where('role', '>=', User::ROLE_BARBER)->get();
 
         return view('admin.shops.index', compact('shops', 'users'));
     }
