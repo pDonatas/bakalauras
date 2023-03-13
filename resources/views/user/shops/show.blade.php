@@ -89,8 +89,8 @@
                                     @foreach($shop->pages as $page)
                                         <a
                                             class="flex-sm-fill text-sm-center nav-link" aria-current="page"
-                                            id="{{ $page->name }}{{ $page->id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ $page->name }}{{ $page->id }}-tab-pane" type="button"
-                                            role="tab" aria-controls="{{ $page->name }}{{ $page->id }}-tab-pane" aria-selected="false">
+                                            id="{{ Str::snake($page->name) }}{{ $page->id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ Str::snake($page->name) }}{{ $page->id }}-tab-pane" type="button"
+                                            role="tab" aria-controls="{{ Str::snake($page->name) }}{{ $page->id }}-tab-pane" aria-selected="false">
                                             {{ $page->name }}
                                         </a>
                                     @endforeach
@@ -122,7 +122,7 @@
                                 Vertinimai
                             </div>
                             @foreach($shop->pages as $page)
-                                <div class="tab-pane fade" id="{{ $page->name }}{{ $page->id }}-tab-pane" role="tabpanel" aria-labelledby="{{ $page->name }}{{ $page->id }}--tab" tabindex="0">{!! $page->description !!}</div>
+                                <div class="tab-pane fade" id="{{ Str::snake($page->name) }}{{ $page->id }}-tab-pane" role="tabpanel" aria-labelledby="{{ Str::snake($page->name) }}{{ $page->id }}--tab" tabindex="0">{!! $page->description !!}</div>
                             @endforeach
                         </div>
                     </div>
