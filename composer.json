@@ -11,7 +11,9 @@
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.11",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "ext-gd": "*",
+        "ext-curl": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
