@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Shop\Page\CreatePageRequest;
-use App\Http\Requests\Shop\Page\UpdatePageRequest;
 use App\Http\Requests\Shop\Service\CreateServiceRequest;
 use App\Http\Requests\Shop\Service\UpdateServiceRequest;
-use App\Models\Page;
+use App\Models\Category;
 use App\Models\Service;
 use App\Models\Shop;
 use Illuminate\Http\RedirectResponse;
@@ -35,7 +33,9 @@ class ServiceController extends Controller
 
     public function edit(Shop $shop, Service $service): View
     {
-        return view('admin.shops.services.edit', compact('shop', 'service'));
+        $categories = Category::all();
+
+        return view('admin.shops.services.edit', compact('shop', 'service', 'categories'));
     }
 
     public function show(Shop $shop, Service $service): RedirectResponse
@@ -56,5 +56,4 @@ class ServiceController extends Controller
 
         return redirect()->route('admin.services.index', $service->id)->with('success', __('Service removed successfully'));
     }
-
 }

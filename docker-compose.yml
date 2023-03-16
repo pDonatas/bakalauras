@@ -44,7 +44,7 @@ services:
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
-            MARIADB_ROOT_PASSWORD: '${DB_PASSWORD}laskdasdhnsdkjasdjklsdbajkasd'
+            MARIADB_ROOT_PASSWORD: '${DB_PASSWORD}'
             MARIADB_ROOT_HOST: "%"
             MARIADB_DATABASE: '${DB_DATABASE}'
             MARIADB_USER: '${DB_USERNAME}'
@@ -59,26 +59,7 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
-    mysql2:
-        container_name: karole_mysql
-        image: 'bitnami/mariadb:latest'
-        ports:
-            - "3307:3306"
-        environment:
-            MARIADB_ROOT_PASSWORD: '${DB_PASSWORD}laskdasdhnsdkjasdjklsdbajkasd'
-            MARIADB_ROOT_HOST: "%"
-            MARIADB_DATABASE: 'semantiniai_modeliai'
-            MARIADB_USER: 'user'
-            MARIADB_PASSWORD: 'paprastas.478'
-            MARIADB_ALLOW_EMPTY_PASSWORD: 0
-        volumes:
-            - 'mysql2:/bitnami/mariadb'
-        networks:
-            - sail
-        healthcheck:
-            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
-            retries: 3
-            timeout: 5s
+
     redis:
         image: 'redis:alpine'
         volumes:
@@ -100,6 +81,4 @@ volumes:
     mysql:
         driver: local
     sail-redis:
-        driver: local
-    mysql2:
         driver: local

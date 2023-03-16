@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 /** Shops */
 
-use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\User\MarkController;
 use App\Http\Controllers\User\Shop\ShopController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('shop/{id}', [ShopController::class, 'show'])->name('shop.show');
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::post('shop/vote/{shop}', [MarkController::class, 'store'])->name('vote');
     Route::get('orders/success', [OrderController::class, 'success'])->name('orders.success');
     Route::get('orders/fail', [OrderController::class, 'fail'])->name('orders.fail');

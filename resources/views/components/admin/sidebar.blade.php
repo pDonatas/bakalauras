@@ -13,8 +13,8 @@
             <!-- Sidebar Menu -->
             <ul class="nav nav-pills nav-sidebar flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('admin.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-circle"></i>
+                    <a href="{{ route('index') }}" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
                         <p>
                             {{ __('Back to Home') }}
                         </p>
@@ -37,6 +37,14 @@
                         </p>
                     </a>
                 </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.categories.index') }}" class="nav-link">
+                            <i class="fa-solid fa-palette"></i>
+                            <p>
+                                {{ __('Categories') }}
+                            </p>
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.shops.index') }}" class="nav-link">

@@ -117,5 +117,15 @@
     "Order updated successfully": "Užsakymas sėkmingai atnaujintas",
     "Order deleted successfully": "Užsakymas sėkmingai ištrintas",
     "Order not found": "Užsakymas nerastas",
-    "Calendar": "Kalendorius"
+    "Calendar": "Kalendorius",
+    "Categories": "Kategorijos",
+    "List of Categories": "Kategorijų sąrašas",
+    "Slug": "Nuoroda",
+    "None": "Nėra",
+    "Parent": "Tėvinė kategorija",
+    "Category": "Kategorija",
+    "Category created successfully": "Kategorija sėkmingai sukurta",
+    "Category updated successfully": "Kategorija sėkmingai atnaujinta",
+    "Duration": "Trukmė",
+    "in minutes": "minutėmis"
 }

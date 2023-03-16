@@ -1,7 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\Admin\CalendarController;
-use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\AIController;
 use App\Http\Controllers\Main\MainController;
 use Illuminate\Support\Facades\Route;
