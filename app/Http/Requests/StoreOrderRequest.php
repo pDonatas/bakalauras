@@ -27,6 +27,7 @@ class StoreOrderRequest extends FormRequest
             'time' => ['required', 'date_format:H:i'],
             'comment' => ['nullable', 'string', 'max:255'],
             'order_type' => ['required', 'in:1,2'],
+            'ai_photo' => ['nullable', 'string'],
         ];
     }
 }

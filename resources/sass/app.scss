@@ -138,3 +138,13 @@
 .background-black {
     background-color: black;
 }
+
+#ai-images > img {
+    display: inline;
+    max-width: 155px;
+    padding: 4px;
+
+    &.selected {
+        border: 2px solid var(--color-primary);
+    }
+}

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Shop\Service;
 
 use Illuminate\Contracts\Validation\Rule;
@@ -27,6 +29,8 @@ class CreateServiceRequest extends FormRequest
             'description' => ['required', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
             'user_id' => ['required', 'exists:users,id'],
+            'length' => ['required', 'numeric', 'min:0'],
+            'category_id' => ['required', 'exists:categories,id'],
         ];
     }
 }

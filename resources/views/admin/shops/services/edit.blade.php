@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') {{ __('Shops') }} {{ __('Pages') }} @endsection
+@section('title') {{ __('Shops') }} {{ __('Services') }} @endsection
 @section('content')
     <div class="row g-4">
         <!-- Start column -->
@@ -47,6 +47,18 @@
                                 @else
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 @endif
+                                <div class="mb-3">
+                                    <label for="duration" class="form-label">{{ __('Duration') }} ({{ __('in minutes') }})</label>
+                                    <input type="number" name="length" class="form-control" id="duration" value="{{ $service->length }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">{{ __('Category') }}</label>
+                                    <select name="category_id" class="form-control" id="category">
+                                        @foreach ($categories as $category)
+                                            <option @if ($category->id === $service->category_id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Edit') }}</button>

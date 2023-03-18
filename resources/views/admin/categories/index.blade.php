@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title') {{ __('Shops') }} @endsection
+@section('title') {{ __('Categories') }} @endsection
 @section('content')
     <div class="row g-4">
         <!-- Start column -->
@@ -8,7 +8,7 @@
             <div class="card card-primary card-outline">
                 <div class="card-header">
                     <div class="card-title">
-                        {{ __('Services') }}
+                        {{ __('Categories') }}
                     </div>
                 </div>
                 <div class="card-body">
@@ -18,7 +18,7 @@
                                 {{ __('Create') }}
                             </div>
                         </div>
-                        <form method="post" action="{{ route('admin.services.store', $shop->id) }}">
+                        <form method="post" action="{{ route('admin.categories.store') }}">
                             @csrf
                             <div class="card-body">
                                 <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
@@ -27,37 +27,22 @@
                                     <input type="text" name="name" class="form-control" id="name">
                                 </div>
                                 <div class="mb-3">
+                                    <label for="slug" class="form-label">{{ __('Slug') }}</label>
+                                    <input type="text" name="slug" class="form-control" id="slug">
+                                </div>
+                                <div class="mb-3">
                                     <label for="description" class="form-label">{{ __('Description') }}</label>
                                     <textarea name="description" class="form-control" id="description"></textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="price" class="form-label">{{ __('Price') }}</label>
-                                    <input type="number" step="0.1" name="price" class="form-control" id="price">
-                                </div>
-                                @if (auth()->user()->isAdmin() || $shop->owner_id == auth()->user()->id)
-                                <div class="mb-3">
-                                    <label for="user_id" class="form-label">{{ __('Worker') }}</label>
-                                    <select name="user_id" class="form-control" id="user_id">
-                                        @foreach ($shop->workers as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <label for="parent_id" class="form-label">{{ __('Parent') }}</label>
+                                    <select name="parent_id" class="form-control" id="parent_id">
+                                        <option value="0">{{ __('None') }}</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                @else
-                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                @endif
-                            <div class="mb-3">
-                                <label for="duration" class="form-label">{{ __('Duration') }} ({{ __('in minutes') }})</label>
-                                <input type="number" name="length" class="form-control" id="duration">
-                            </div>
-                            <div class="mb-3">
-                                <label for="category" class="form-label">{{ __('Category') }}</label>
-                                <select name="category_id" class="form-control" id="category">
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
@@ -66,11 +51,11 @@
                     </div>
                     <div class="card card-secondary card-outline">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('List of Services') }}</h3>
+                            <h3 class="card-title">{{ __('List of Categories') }}</h3>
 
                             <div class="card-tools">
                                 <ul class="pagination pagination-sm float-end">
-                                    {{ $services->links() }}
+                                    {{ $categories->links() }}
                                 </ul>
                             </div>
                         </div>
@@ -81,21 +66,17 @@
                                 <tr>
                                     <th style="width: 10px">{{ __('ID') }}</th>
                                     <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Price') }}</th>
-                                    <th>{{ __('Worker') }}</th>
                                     <th style="width: 130px">{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($services as $service)
+                                @foreach($categories as $category)
                                     <tr>
-                                        <td>{{ $service->id }}</td>
-                                        <td>{{ $service->name }}</td>
-                                        <td>{{ $service->price }}</td>
-                                        <td>{{ $service->worker->name }}</td>
+                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $category->name }}</td>
                                         <td>
-                                            <a href="{{ route('admin.services.edit', [$shop->id, $service->id]) }}"><button class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
-                                            <a href="#" onclick="deleteItem('{{ route('admin.services.destroy', [$shop->id, $service->id]) }}')"><button class="btn btn-default"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
+                                            <a href="{{ route('admin.categories.edit', $category->id) }}"><button title="{{ __('Edit') }}" class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                                            <a href="#" onclick="deleteItem('{{ route('admin.categories.destroy', $category->id) }}')"><button title="{{ __('Delete') }}" class="btn btn-default"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -108,4 +89,23 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        function slugify(val) {
+            return val.toString().toLowerCase()
+                .replace(/\s+/g, '-')           // Replace spaces with -
+                .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                .replace(/^-+/, '')             // Trim - from start of text
+                .replace(/-+$/, '');            // Trim - from end of text
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            $('#name').on('keyup', function() {
+                $('#slug').val(slugify($(this).val()));
+            });
+        });
+    </script>
 @endsection
