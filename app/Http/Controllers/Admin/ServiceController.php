@@ -21,7 +21,9 @@ class ServiceController extends Controller
             $services = $shop->services()->where('user_id', auth()->id())->paginate();
         }
 
-        return view('admin.shops.services.index', compact('shop', 'services'));
+        $categories = Category::all();
+
+        return view('admin.shops.services.index', compact('shop', 'services', 'categories'));
     }
 
     public function store(Shop $shop, CreateServiceRequest $request): RedirectResponse

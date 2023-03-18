@@ -26,6 +26,13 @@ class OrdersController extends Controller
         return view('admin.orders.edit', compact('order', 'services'));
     }
 
+    public function show(Order $order): View
+    {
+        $services = auth()->user()->providedServicesByShop($order->service->shop)->get();
+
+        return view('admin.orders.show', compact('order', 'services'));
+    }
+
     public function update(UpdateOrderRequest $request, Order $order): RedirectResponse
     {
         $order->update($request->validated());
