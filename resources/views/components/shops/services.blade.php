@@ -11,7 +11,7 @@
             <div class="actions">
                 <a href="{{ route('orders.create', $service->id) }}" class="btn btn-primary">{{ __('Order') }}</a>
                 <button type="button" data-service="{{ $service->id }}" class="btn btn-primary service-photos">
-                    Launch demo modal
+                    Photo gallery
                 </button>
             </div>
         </div>
