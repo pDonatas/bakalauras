@@ -14,6 +14,8 @@ class ShopController extends Controller
     {
         $shop = Shop::withCount('marks')->find($id);
 
-        return view('user.shops.show', compact('shop'));
+        $photos = $shop->services()->with('photos')->get()->pluck('photos')->flatten()->random(4);
+
+        return view('user.shops.show', compact('shop', 'photos'));
     }
 }

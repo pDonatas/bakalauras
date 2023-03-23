@@ -23,7 +23,9 @@
     <script type="text/javascript" charset="utf-8">
         var wtpQualitySign_projectId  = 235738;
         var wtpQualitySign_language   = "lt";
-    </script><script src="https://bank.paysera.com/new/js/project/wtpQualitySigns.js" type="text/javascript" charset="utf-8"></script>
+    </script>
+    <script src="https://bank.paysera.com/new/js/project/wtpQualitySigns.js" type="text/javascript" charset="utf-8"></script>
+    @yield('styles')
 </head>
 
 <body>
@@ -48,6 +50,7 @@
     <div class="line"></div>
 </div>
 
+@yield('scripts')
 </body>
 
 </html>

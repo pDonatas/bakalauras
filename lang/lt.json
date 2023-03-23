@@ -182,5 +182,9 @@
     "Flowers": "Gėlės",
     "Stripes": "Juostos",
     "Geometric": "Geometriniai",
-    "Rhinestones": "Akmenys"
+    "Rhinestones": "Akmenys",
+    "Are you sure?": "Ar tikrai?",
+    "Do you really want to delete these records? This process cannot be undone.": "Ar tikrai norite ištrinti šiuos įrašus? Šis procesas negali būti atšauktas.",
+    "Cancel": "Atšaukti",
+    "Delete": "Ištrinti"
 }

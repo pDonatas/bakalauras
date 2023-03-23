@@ -94,6 +94,7 @@
                                         <td>{{ $service->price }}</td>
                                         <td>{{ $service->worker->name }}</td>
                                         <td>
+                                            <a href="{{ route('admin.photos.index', [$shop->id, $service->id]) }}"><button class="btn btn-default"><i class="fa-solid fa-image"></i></button></a>
                                             <a href="{{ route('admin.services.edit', [$shop->id, $service->id]) }}"><button class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
                                             <a href="#" onclick="deleteItem('{{ route('admin.services.destroy', [$shop->id, $service->id]) }}')"><button class="btn btn-default"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                         </td>

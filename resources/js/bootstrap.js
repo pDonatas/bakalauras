@@ -3,6 +3,11 @@ import axios from 'axios';
 import $ from 'jquery';
 import AOS from 'aos';
 import select2 from 'select2';
+import Cropper from 'cropperjs';
+import Dropzone from 'dropzone';
+import { Swiper, Navigation, Pagination } from "swiper";
+import "bootstrap";
+import { Modal } from "bootstrap";
 
 window._ = _;
 window.bootstrap = import('bootstrap');
@@ -11,6 +16,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.$ = window.jquery = window.jQuery = $;
 window.gallery = import('blueimp-gallery');
 select2();
+window.Cropper = Cropper;
+window.Dropzone = Dropzone;
+window.Swiper = Swiper;
+Swiper.use([Navigation, Pagination]);
+window.Modal = Modal;
 
 // Init application
 document.addEventListener('DOMContentLoaded', () => {
