@@ -18,13 +18,13 @@
                                 {{ __('Create') }}
                             </div>
                         </div>
-                        <form method="post" action="{{ route('admin.shops.store') }}">
+                        <form method="post" enctype="multipart/form-data" action="{{ route('admin.shops.store') }}">
                             @csrf
                             <div class="card-body">
                                 <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
                                 <div class="mb-3">
                                     <label for="name" class="form-label">{{ __('Name') }}</label>
-                                    <input type="text" name="name" class="form-control" id="name">
+                                    <input type="text" name="company_name" class="form-control" id="name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">{{ __('Description') }}</label>
@@ -42,6 +42,10 @@
                                 @else
                                     <input type="hidden" name="owner_id" value="{{ auth()->user()->id }}">
                                 @endif
+                                <div class="mb-3">
+                                    <label for="photo" class="form-label">{{ __('Main photo') }}</label>
+                                    <input type="file" name="photo" class="form-control" id="photo" accept="image/*" />
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>

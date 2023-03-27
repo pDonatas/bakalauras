@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property int $services_count
  * @property int $workers_count
  * @property int $orders_count
+ * @property int $owner_id
  */
 class Shop extends Model
 {
