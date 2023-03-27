@@ -8,6 +8,7 @@ import Dropzone from 'dropzone';
 import { Swiper, Navigation, Pagination } from "swiper";
 import "bootstrap";
 import { Modal } from "bootstrap";
+import Toastify from 'toastify-js'
 
 window._ = _;
 window.bootstrap = import('bootstrap');
@@ -21,6 +22,7 @@ window.Dropzone = Dropzone;
 window.Swiper = Swiper;
 Swiper.use([Navigation, Pagination]);
 window.Modal = Modal;
+window.toast = Toastify;
 
 // Init application
 document.addEventListener('DOMContentLoaded', () => {

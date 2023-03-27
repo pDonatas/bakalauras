@@ -2,6 +2,7 @@
 @section('title')
     {{ $shop->name }}
 @endsection
+
 @section('content')
     <div class="row g-4">
         <!-- Start column -->
@@ -16,12 +17,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="rating float-end">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                                    @for ($i = 0; $i < $shop->shopAverageMark; $i++)
+                                        <i class="fa-solid fa-star"></i>
+                                    @endfor
 
                                     <span>{{ $shop->marks_count }} {{ __('marks') }}</span>
                                 </div>
@@ -88,9 +86,13 @@
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                            class="btn btn-primary">Vertinti</a>
                                     @endif
-                                    <a href="#" class="btn btn-primary">Pridėti į mėgstamus</a>
+                                    @if (auth()->user()->bookmarks()->where('shop_id', $shop->id)->doesntExist())
+                                        <a href="{{ route('bookmark.create', $shop->id) }}" class="btn btn-primary">Pridėti į mėgstamus</a>
+                                    @else
+                                        <a href="{{ route('bookmark.destroy', $shop->id) }}" class="btn btn-primary">Pašalinti iš mėgstamų</a>
+                                    @endif
                                 @endauth
-                                <a href="#" class="btn btn-primary">Palyginti</a>
+                                <a href="#" onclick="toCompare({{ $shop->id }});" id="compare" class="btn btn-primary">Palyginti</a>
                             </div>
                         </div>
                     </div>
@@ -167,21 +169,43 @@
             spaceBetween: 10,
         });
     </script>
-@endsection
-
-@section('styles')
-    <style>
-        .swiper {
-            width: 100%;
-            height: 100%;
-            margin-bottom: 200px;
+    <script>
+        function toCompare(id) {
+            let text = "Pridėta prie";
+            let compare = localStorage.getItem('compare');
+            if (compare === null) {
+                compare = [];
+            } else {
+                compare = JSON.parse(compare);
+            }
+            if (compare.includes(id)) {
+                compare = compare.filter(item => item !== id);
+                $('#compare').text('Palyginti');
+                text = "Pašalinta iš";
+            } else {
+                compare.push(id);
+                $('#compare').text('Pašalinti iš palyginimo sąrašo');
+            }
+            localStorage.setItem('compare', JSON.stringify(compare));
+            window.toast({
+                text: text + ' palyginimo sąrašo',
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
         }
-
-        .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 300px;
-        }
-    </style>
+    </script>
+    <script type="module">
+        $(document).ready(function () {
+            let compare = localStorage.getItem('compare');
+            if (compare === null) {
+                compare = [];
+            } else {
+                compare = JSON.parse(compare);
+            }
+            if (compare.includes({{ $shop->id }})) {
+                $('#compare').text('Pašalinti iš palyginimo sąrašo');
+            }
+        })
+    </script>
 @endsection

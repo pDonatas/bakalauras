@@ -33,6 +33,7 @@
         "lightbox": "^0.5.0",
         "sass": "^1.55.0",
         "select2": "^4.1.0-rc.0",
-        "swiper": "^9.1.1"
+        "swiper": "^9.1.1",
+        "toastify-js": "^1.12.0"
     }
 }

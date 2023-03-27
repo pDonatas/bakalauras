@@ -163,5 +163,6 @@ return $config
         PhpCsFixerCustomFixers\Fixer\NoDuplicatedImportsFixer::name() => true,
         PhpCsFixerCustomFixers\Fixer\NoLeadingSlashInGlobalNamespaceFixer::name() => true,
         PhpCsFixerCustomFixers\Fixer\PromotedConstructorPropertyFixer::name() => true,
+        'declare_strict_types' => true,
     ])
     ->setFinder($finder);
