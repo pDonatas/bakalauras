@@ -18,7 +18,6 @@ services:
         volumes:
             - '.:/var/www/html'
             - './docker/8.1/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini'
-            - './docker/8.1/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini'
         restart: on-failure
         networks:
             - sail

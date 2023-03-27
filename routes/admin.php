@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\UserController;
@@ -21,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('shops.pages', PageController::class)->names('pages');
             Route::resource('calendar', CalendarController::class)->names('calendar');
             Route::resource('orders', OrdersController::class)->names('orders');
+            Route::resource('shops.services.photos', PhotoController::class)->names('photos');
         });
 
         Route::middleware(['role:2'])->group(function () {

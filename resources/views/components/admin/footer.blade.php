@@ -18,8 +18,8 @@
                 <p>{{ __('Do you really want to delete these records? This process cannot be undone.') }}</p>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+                <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
             </div>
         </div>
     </div>

@@ -182,5 +182,17 @@
     "Flowers": "Gėlės",
     "Stripes": "Juostos",
     "Geometric": "Geometriniai",
-    "Rhinestones": "Akmenys"
+    "Rhinestones": "Akmenys",
+    "Are you sure?": "Ar tikrai?",
+    "Do you really want to delete these records? This process cannot be undone.": "Ar tikrai norite ištrinti šiuos įrašus? Šis procesas negali būti atšauktas.",
+    "Delete": "Ištrinti",
+    "Address": "Adresas",
+    "Phone": "Telefonas",
+    "Average mark": "Vidutinis įvertinimas",
+    "Services count": "Paslaugų skaičius",
+    "Workers count": "Darbuotojų skaičius",
+    "Orders count": "Užsakymų skaičius",
+    "Registration date": "Registracijos data",
+    "Compare": "Palyginti",
+    "Compare shops": "Palyginti salonus"
 }
