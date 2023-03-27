@@ -9,12 +9,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateShopRequest extends FormRequest
 {
+    /**
+     * @return string[]
+     */
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'owner_id' => 'required|exists:users,id',
+            'photo' => 'required|image',
         ];
     }
 
