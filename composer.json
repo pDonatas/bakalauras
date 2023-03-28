@@ -3,7 +3,9 @@
     "type": "project",
     "description": "Barber shop system.",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-gd": "*",
         "friendsofphp/php-cs-fixer": "^3.9",
         "guzzlehttp/guzzle": "^7.2",
         "hammerstone/fast-paginate": "^0.1.8",
@@ -12,8 +14,7 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7",
-        "ext-gd": "*",
-        "ext-curl": "*"
+        "laravelcollective/html": "^6.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
@@ -27,6 +28,7 @@
         "nunomaduro/collision": "^6.1",
         "nunomaduro/larastan": "^2.1",
         "phpro/grumphp": "^1.13",
+        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^2.0"
     },

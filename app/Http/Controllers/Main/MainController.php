@@ -11,7 +11,7 @@ class MainController
 {
     public function index(): View
     {
-        $shops = Shop::paginate();
+        $shops = Shop::all();
 
         return view('index', compact('shops'));
     }

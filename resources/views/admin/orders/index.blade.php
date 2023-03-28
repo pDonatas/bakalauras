@@ -41,6 +41,7 @@
                                         <td>{{ $order->service->worker->name }}</td>
                                         <td>
                                             {{ $order->statusText }}
+                                            <a href="{{ route('admin.orders.show', $order->id) }}">{{ __('Show') }}</a>
                                             @if ($order->status < 2)
                                                 <a href="{{ route('admin.orders.edit', $order->id) }}">{{ __('Edit') }}</a>
                                             @endif

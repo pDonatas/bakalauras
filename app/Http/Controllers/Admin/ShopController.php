@@ -30,6 +30,20 @@ class ShopController extends Controller
     {
         $shop = Shop::create($request->validated());
 
+        $file = $request->file('photo');
+
+        $name = $file->getClientOriginalName();
+
+        $newName = time() . '_' . $name;
+
+        $newPath = 'images/shops/' . $shop->id;
+
+        \Storage::disk('public')->putFileAs($newPath, $file, $newName);
+
+        $shop->update([
+            'photo' => '/storage/images/shops/' . $shop->id . '/' . $newName,
+        ]);
+
         $shop->save();
 
         return redirect()->route('admin.shops.index')->with('success', __('Shop created successfully'));

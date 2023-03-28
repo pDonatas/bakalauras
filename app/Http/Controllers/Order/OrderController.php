@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
@@ -22,22 +24,38 @@ class OrderController extends Controller
 
     public function create(Service $service): View
     {
-        return view('user.orders.create', compact('service'));
+        $workDay = $service->worker->workDay;
+
+        $workDays = $workDay ? $workDay->days : [];
+
+        // calculate days to hide
+        $hiddenDays = [];
+        for ($i = 1; $i <= 7; $i++) {
+            if (! in_array($i, $workDays)) {
+                if (7 == $i) {
+                    $hiddenDays[] = 0;
+                } else {
+                    $hiddenDays[] = $i;
+                }
+            }
+        }
+
+        return view('user.orders.create', compact('service', 'hiddenDays'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrderRequest $request, Service $service, PaymentServiceInterface $paymentService)
+    public function store(StoreOrderRequest $request, Service $service, PaymentServiceInterface $paymentService): RedirectResponse
     {
-        $order = Order::make($request->validated());
+        $order = new Order($request->validated());
         $order->user()->associate(auth()->user());
         $order->service()->associate($service);
         $order->save();
 
         $url = route('user.orders');
 
-        if ($order->order_type == Order::ORDER_TYPE_PAYMENT) {
+        if (Order::ORDER_TYPE_PAYMENT == $order->order_type) {
             $url = $paymentService->pay($order->id, $service->price);
         }
 
@@ -48,7 +66,7 @@ class OrderController extends Controller
     {
         if ($request->data) {
             $data = base64_decode($request->data);
-            if (!$data) {
+            if (! $data) {
                 return view('user.orders.fail');
             }
 

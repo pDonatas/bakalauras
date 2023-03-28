@@ -6,7 +6,7 @@ namespace App\Services\Payments;
 
 class PayseraService implements PaymentServiceInterface
 {
-    public function pay(int $orderId, int $amount): string
+    public function pay(int $orderId, float $amount): string
     {
         $data = [
             'projectid' => config('services.paysera.project_id'),

@@ -20,10 +20,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @yield('styles')
     <script type="text/javascript" charset="utf-8">
         var wtpQualitySign_projectId  = 235738;
         var wtpQualitySign_language   = "lt";
-    </script><script src="https://bank.paysera.com/new/js/project/wtpQualitySigns.js" type="text/javascript" charset="utf-8"></script>
+    </script>
+    <script src="https://bank.paysera.com/new/js/project/wtpQualitySigns.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
@@ -48,6 +50,7 @@
     <div class="line"></div>
 </div>
 
+@yield('scripts')
 </body>
 
 </html>

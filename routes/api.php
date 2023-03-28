@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+declare(strict_types=1);
+
+use App\Http\Controllers\User\Shop\CompareController;
+use App\Http\Controllers\User\Shop\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('services/{service}/photos', [ServiceController::class, 'photos'])->name('shop.photos');
+Route::post('shops/compare', [CompareController::class, 'compare'])->name('shops.compare');
+Route::post('services/{service}/time', [ServiceController::class, 'time'])->name('services.time');

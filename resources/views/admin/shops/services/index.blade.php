@@ -46,6 +46,18 @@
                                 @else
                                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 @endif
+                            <div class="mb-3">
+                                <label for="duration" class="form-label">{{ __('Duration') }} ({{ __('in minutes') }})</label>
+                                <input type="number" name="length" class="form-control" id="duration">
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">{{ __('Category') }}</label>
+                                <select name="category_id" class="form-control" id="category">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
@@ -82,6 +94,7 @@
                                         <td>{{ $service->price }}</td>
                                         <td>{{ $service->worker->name }}</td>
                                         <td>
+                                            <a href="{{ route('admin.photos.index', [$shop->id, $service->id]) }}"><button class="btn btn-default"><i class="fa-solid fa-image"></i></button></a>
                                             <a href="{{ route('admin.services.edit', [$shop->id, $service->id]) }}"><button class="btn btn-default"><i class="fa-solid fa-pen-to-square"></i></button></a>
                                             <a href="#" onclick="deleteItem('{{ route('admin.services.destroy', [$shop->id, $service->id]) }}')"><button class="btn btn-default"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                         </td>
