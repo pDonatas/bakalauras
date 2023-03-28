@@ -9,13 +9,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateShopRequest extends FormRequest
 {
+    /**
+     * @return array<string, string>
+     */
     public function rules(): array
     {
         return [
             'company_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'owner_id' => 'required|exists:users,id',
-            'workers' => 'nullable|array'
+            'workers' => 'nullable|array',
         ];
     }
 
