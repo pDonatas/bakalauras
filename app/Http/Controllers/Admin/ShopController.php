@@ -63,10 +63,6 @@ class ShopController extends Controller
 
     public function update(UpdateShopRequest $request, Shop $shop): RedirectResponse
     {
-        $request = $request->validated();
-        $workers = $request['workers'];
-        unset($request['workers']);
-
         if ($request->file('photo')) {
             $file = $request->file('photo');
 
@@ -82,6 +78,10 @@ class ShopController extends Controller
                 'photo' => '/storage/images/shops/' . $shop->id . '/' . $newName,
             ]);
         }
+
+        $request = $request->validated();
+        $workers = $request['workers'];
+        unset($request['workers']);
 
         $shop->update($request);
         $shop->workers()->sync($workers);
