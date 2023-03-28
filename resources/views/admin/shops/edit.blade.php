@@ -54,6 +54,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="photo" class="form-label">{{ __('Main photo') }}</label>
+                                    <input type="file" name="photo" class="form-control" id="photo" accept="image/*" />
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
