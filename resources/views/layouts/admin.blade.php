@@ -31,7 +31,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <div class="fs-3">@yield('title')</div>
+                        <div class="fs-3">
+                            @yield('title')
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        @yield('actions')
                     </div>
                 </div>
             </div>

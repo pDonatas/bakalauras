@@ -9,6 +9,7 @@
 @import "dropzone/dist/dropzone.css";
 @import "swiper/swiper-bundle.min.css";
 @import "toastify-js/src/toastify.css";
+@import "@eonasdan/tempus-dominus/dist/css/tempus-dominus.css";
 
 .right-30 {
     margin-right: 30px;
@@ -179,4 +180,8 @@
     background-size: cover;
     width: 300px;
     height: 300px;
+}
+
+.fr {
+    float: right;
 }

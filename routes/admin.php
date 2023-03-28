@@ -20,7 +20,9 @@ Route::middleware(['auth'])->group(function () {
             Route::resource('shops', ShopController::class)->names('shops');
             Route::resource('shops.services', ServiceController::class)->names('services');
             Route::resource('shops.pages', PageController::class)->names('pages');
-            Route::resource('calendar', CalendarController::class)->names('calendar');
+            Route::get('calendar', [CalendarController::class, 'index'])->name('calendar.index');
+            Route::get('calendar/manage', [CalendarController::class, 'manage'])->name('calendar.manage');
+            Route::post('calendar/update', [CalendarController::class, 'update'])->name('calendar.update');
             Route::resource('orders', OrdersController::class)->names('orders');
             Route::resource('shops.services.photos', PhotoController::class)->names('photos');
         });

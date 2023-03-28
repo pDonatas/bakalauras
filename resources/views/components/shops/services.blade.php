@@ -11,7 +11,7 @@
             <div class="actions">
                 <a href="{{ route('orders.create', $service->id) }}" class="btn btn-primary">{{ __('Order') }}</a>
                 <button type="button" data-service="{{ $service->id }}" class="btn btn-primary service-photos">
-                    Photo gallery
+                    {{ __('Photo gallery') }}
                 </button>
             </div>
         </div>
@@ -23,7 +23,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Photo gallery</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">{{ __('Photo gallery') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

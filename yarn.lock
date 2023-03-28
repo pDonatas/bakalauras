@@ -9,6 +9,11 @@
   dependencies:
     lodash-es "^4.17.21"
 
+"@eonasdan/tempus-dominus@^6.4.4":
+  version "6.4.4"
+  resolved "https://registry.yarnpkg.com/@eonasdan/tempus-dominus/-/tempus-dominus-6.4.4.tgz#2a5a217259f18e63cd6a01dd86eecebbdcf90bc6"
+  integrity sha512-QPxUlu+ZaJR0sERiKx1dRDxuq1NJh1jSZqf+IB7ZNG8CXBL7wOBsYAYEwSu6web3KGdzWlxfRmpgzwtR3EFgSg==
+
 "@esbuild/android-arm@0.15.18":
   version "0.15.18"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.15.18.tgz#266d40b8fdcf87962df8af05b76219bc786b4f80"

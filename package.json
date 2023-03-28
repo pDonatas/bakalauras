@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@ecodev/natural-gallery-js": "^9.1.4",
+        "@eonasdan/tempus-dominus": "^6.4.4",
         "@fortawesome/fontawesome-free": "^6.2.1",
         "@popperjs/core": "^2.11.6",
         "aos": "^2.3.4",
