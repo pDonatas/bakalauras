@@ -9,6 +9,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateShopRequest extends FormRequest
 {
+    /**
+     * @return array<string, string>
+     */
     public function rules(): array
     {
         return [
@@ -16,7 +19,6 @@ class UpdateShopRequest extends FormRequest
             'description' => 'nullable|string',
             'owner_id' => 'required|exists:users,id',
             'workers' => 'nullable|array',
-            'photo' => 'image',
         ];
     }
 
