@@ -67,6 +67,22 @@ class ShopController extends Controller
         $workers = $request['workers'];
         unset($request['workers']);
 
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+
+            $name = $file->getClientOriginalName();
+
+            $newName = time() . '_' . $name;
+
+            $newPath = 'images/shops/' . $shop->id;
+
+            \Storage::disk('public')->putFileAs($newPath, $file, $newName);
+
+            $shop->update([
+                'photo' => '/storage/images/shops/' . $shop->id . '/' . $newName,
+            ]);
+        }
+
         $shop->update($request);
         $shop->workers()->sync($workers);
 
