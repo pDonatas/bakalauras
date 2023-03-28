@@ -21,12 +21,12 @@
                                     @csrf
                                     <h3>{{ __('Main order data') }}</h3>
                                     <div class="form-group">
-                                        <label for="date">{{ __('Date') }}</label>
-                                        <input type="date" class="form-control" id="date" name="date" value="{{ old('date') }}" required>
+                                        <label for="datepicker">{{ __('Date') }}</label>
+                                        <input type="text" class="form-control datepicker" id="datepicker" name="date" value="{{ old('date') }}" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="time">{{ __('Time') }}</label>
-                                        <input type="time" class="form-control" id="time" name="time" value="{{ old('time') }}" required>
+                                        <select id="time" class="form-control" disabled name="time"></select>
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">{{ __('Comment') }}</label>
@@ -55,4 +55,61 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="module">
+        const datepicker = document.getElementById('datepicker');
+        const date = new TempusDominus(datepicker, {
+                localization: {
+                    locale: 'lt',
+                    format: "yyyy-MM-dd",
+                    startOfTheWeek: 1,
+                    hourCycle: 'h23',
+                },
+                display: {
+                    components: {
+                        calendar: true,
+                        date: true,
+                        month: true,
+                        year: true,
+                        decades: false,
+                        clock: false,
+                        hours: false,
+                        minutes: false,
+                        seconds: false,
+                    },
+                    inline: false,
+                    theme: 'auto',
+                },
+                allowInputToggle: true,
+                useCurrent: true,
+                defaultDate: undefined,
+                restrictions: {
+                    daysOfWeekDisabled: JSON.parse('@json($hiddenDays)'),
+                }
+            });
+
+        datepicker.addEventListener('change', function (e) {
+            let date = e.detail.date;
+            date = date.format('yyyy-MM-dd');
+
+            $.ajax({
+                url: '{{ route('services.time', $service->id) }}',
+                type: 'POST',
+                data: {
+                    date: date,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (data) {
+                    $('#time').removeAttr('disabled');
+                    $('#time').empty();
+                    const times = Object.values(data);
+                    times.forEach(function (time) {
+                        $('#time').append(`<option value="${time}">${time}</option>`);
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

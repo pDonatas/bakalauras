@@ -8,7 +8,8 @@ import Dropzone from 'dropzone';
 import { Swiper, Navigation, Pagination } from "swiper";
 import "bootstrap";
 import { Modal } from "bootstrap";
-import Toastify from 'toastify-js'
+import Toastify from 'toastify-js';
+import { TempusDominus } from "@eonasdan/tempus-dominus";
 
 window._ = _;
 window.bootstrap = import('bootstrap');
@@ -23,6 +24,7 @@ window.Swiper = Swiper;
 Swiper.use([Navigation, Pagination]);
 window.Modal = Modal;
 window.toast = Toastify;
+window.TempusDominus = TempusDominus;
 
 // Init application
 document.addEventListener('DOMContentLoaded', () => {
@@ -130,5 +132,34 @@ document.addEventListener('DOMContentLoaded', () => {
         aosInit();
     });
 
+    const timepickers = document.querySelectorAll('.timepicker');
+    timepickers.forEach(el => {
+        new TempusDominus(el, {
+            localization: {
+                locale: 'lt',
+                hourCycle: 'h23',
+                format: "HH:mm"
+            },
+            display: {
+                viewMode: 'clock',
+                components: {
+                    calendar: false,
+                    date: false,
+                    month: false,
+                    year: false,
+                    decades: false,
+                    clock: true,
+                    hours: true,
+                    minutes: true,
+                    seconds: false,
+                },
+                inline: false,
+                theme: 'auto'
+            },
+            allowInputToggle: true,
+            useCurrent: true,
+            defaultDate: undefined,
+        });
+    });
 });
 
