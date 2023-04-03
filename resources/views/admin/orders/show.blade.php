@@ -22,6 +22,7 @@
                           <li class="list-group-item">{{ __('Status') }}: {{ $order->statusText }}</li>
                           <li class="list-group-item">{{ __('Additional information') }}: {{ $order->comment }}</li>
                           <li class="list-group-item">{{ __('Selected example photo') }}: <img src="{{ $order->ai_photo }}" /></li>
+                          <li class="list-group-item">{{ __('Selected current photo') }}: <img src="{{ $order->current_photo }}" /></li>
                       </ul>
                     </div>
                 </form>

@@ -10,6 +10,19 @@
             <ul>
                 <li><a href="{{ route('index') }}" class="active">{{ __('Dashboard') }}</a></li>
                 <li><a href="{{ route('shops.compare.index') }}">{{ __('Compare shops') }}</a></li>
+                <li class="dropdown">
+                    <!-- language select -->
+                    <a href="#"><span><i class="bi bi-globe"></i></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul class="main-menu">
+                        @foreach (config('app.locales') as $key => $value)
+                            <li>
+                                <a href="{{ route('locale', $key) }}" class="{{ app()->getLocale() === $key ? 'active' : '' }}">
+                                    {{ $value }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li class="last-child dropdown">
                     <a href="#"><span><i class="bi bi-person"></i></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul class="main-menu">

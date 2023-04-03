@@ -84,15 +84,15 @@
                                 @auth()
                                     @if (auth()->user()->marks()->where('shop_id', $shop->id)->doesntExist())
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                           class="btn btn-primary">Vertinti</a>
+                                           class="btn btn-primary">{{ __('Grade') }}</a>
                                     @endif
                                     @if (auth()->user()->bookmarks()->where('shop_id', $shop->id)->doesntExist())
-                                        <a href="{{ route('bookmark.create', $shop->id) }}" class="btn btn-primary">Pridėti į mėgstamus</a>
+                                        <a href="{{ route('bookmark.create', $shop->id) }}" class="btn btn-primary">{{ __('Add to favorites') }}</a>
                                     @else
-                                        <a href="{{ route('bookmark.destroy', $shop->id) }}" class="btn btn-primary">Pašalinti iš mėgstamų</a>
+                                        <a href="{{ route('bookmark.destroy', $shop->id) }}" class="btn btn-primary">{{ __('Remove from favorites') }}</a>
                                     @endif
                                 @endauth
-                                <a href="#" onclick="toCompare({{ $shop->id }});" id="compare" class="btn btn-primary">Palyginti</a>
+                                <a href="#" onclick="toCompare({{ $shop->id }});" id="compare" class="btn btn-primary">{{ __('Compare') }}</a>
                             </div>
                         </div>
                     </div>
@@ -180,15 +180,15 @@
             }
             if (compare.includes(id)) {
                 compare = compare.filter(item => item !== id);
-                $('#compare').text('Palyginti');
-                text = "Pašalinta iš";
+                $('#compare').text('{{ __('Compare') }}');
+                text = "{{ __('Removed from') }}}}";
             } else {
                 compare.push(id);
-                $('#compare').text('Pašalinti iš palyginimo sąrašo');
+                $('#compare').text('{{ __('Remove from comparison list') }}');
             }
             localStorage.setItem('compare', JSON.stringify(compare));
             window.toast({
-                text: text + ' palyginimo sąrašo',
+                text: text + ' {{ __('comparison list') }}',
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 }
@@ -204,7 +204,7 @@
                 compare = JSON.parse(compare);
             }
             if (compare.includes({{ $shop->id }})) {
-                $('#compare').text('Pašalinti iš palyginimo sąrašo');
+                $('#compare').text('{{ __('Remove from comparison list') }}');
             }
         })
     </script>

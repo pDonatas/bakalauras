@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\AIController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\Main\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,4 @@ require __DIR__ . '/user.php';
 
 Route::post('appointments_ajax_update', [CalendarController::class, 'updateAjax'])->name('appointments_ajax_update');
 Route::post('ai', [AIController::class, 'generateImage'])->name('ai');
+Route::get('locale/{locale}', [LocaleController::class, 'index'])->name('locale');
