@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOrderRequest extends FormRequest
@@ -18,7 +19,7 @@ class StoreOrderRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, Rule|array|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
@@ -28,6 +29,8 @@ class StoreOrderRequest extends FormRequest
             'comment' => ['nullable', 'string', 'max:255'],
             'order_type' => ['required', 'in:1,2'],
             'ai_photo' => ['nullable', 'string'],
+            'current_photo_file' => ['nullable', 'file', 'image', 'max:2048'],
+            'current_photo' => ['nullable'],
         ];
     }
 }

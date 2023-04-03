@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCallendarRequest;
 use App\Models\Order;
+use App\Services\Calendar\CalendarService;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -15,6 +16,10 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
+    public function __construct(
+        private readonly CalendarService $calendarService
+    ) {}
+
     public function index(): View
     {
         $events = auth()->user()->providedOrders()->get()->map(function (Order $order) {
@@ -77,7 +82,7 @@ class CalendarController extends Controller
         $workDay = auth()->user()->workDay;
 
         if (! $workDay) {
-            auth()->user()->workDay()->create([
+            $workDay = auth()->user()->workDay()->create([
                 'days' => $request->work_days,
                 'from' => $request->from,
                 'to' => $request->to,
@@ -90,6 +95,8 @@ class CalendarController extends Controller
                 'to' => $request->to,
             ]);
         }
+
+        $this->calendarService->handleUpdation($workDay);
 
         return redirect()->back()->with('success', trans('Calendar updated'));
     }

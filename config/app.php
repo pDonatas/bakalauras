@@ -213,4 +213,8 @@ return [
     'ai' => [
         'key' => env('OPENAI_API_KEY'),
     ],
+    'locales' => [
+        'lt' => 'Lietuvių',
+        'en' => 'English',
+    ],
 ];

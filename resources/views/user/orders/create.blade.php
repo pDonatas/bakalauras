@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <form method="post" enctype="application/x-www-form-urlencoded" action="{{ route('orders.store', $service->id) }}">
+                                <form method="post" enctype="multipart/form-data" action="{{ route('orders.store', $service->id) }}">
                                     @csrf
                                     <h3>{{ __('Main order data') }}</h3>
                                     <div class="form-group">
@@ -32,12 +32,36 @@
                                         <label for="comment">{{ __('Comment') }}</label>
                                         <textarea class="form-control" id="comment" name="comment" rows="3">{{ old('comment') }}</textarea>
                                     </div>
-                                    <div class="form-group mb-3">
+                                    <div class="form-group">
                                         <label for="order-type">{{ __('Order Type') }}</label>
                                         <select class="form-control" id="order-type" name="order_type" required>
                                             <option value="1">{{ __('Paysera') }}</option>
                                             <option value="2">{{ __('In person') }}</option>
                                         </select>
+                                    </div>
+                                    <div class="from-group mb-3">
+                                        <label for="photo">{{ __('Current photo') }}</label>
+                                        <div class="input-group">
+                                            <div id="file" class="show">
+                                                <input type="file" accept="image/*" class="form-control" id="photo" name="current_photo_file" value="{{ old('current_photo') }}">
+
+                                                <button type="button" class="btn btn-primary" id="click-photo">
+                                                    <i class="fas fa-camera"></i>
+                                                </button>
+                                            </div>
+                                            <div id="capture" class="capture hide">
+                                                <video id="video" class="form-control" width="640" height="480" autoplay></video>
+
+                                                <button type="button" class="btn btn-primary" id="click-capture">
+                                                    <i class="fas fa-camera"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-primary" id="click-cancel">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                                <input type="hidden" name="current_photo" id="current-photo" value="">
+                                            </div>
+                                            <div id="current_photo"></div>
+                                        </div>
                                     </div>
                                     <input type="hidden" name="ai_photo" id="ai-input" value="">
                                     <div class="form-group">
@@ -111,5 +135,43 @@
                 }
             });
         });
+
+        $(document).ready(function() {
+            $('#click-photo').click(function() {
+                if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    $('#file').removeClass('show').addClass('hide');
+                    $('#capture').removeClass('hide').addClass('show');
+                    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+                        const video = document.getElementById('video');
+                        video.srcObject = stream;
+                        video.play();
+                    });
+                }
+            });
+
+            $('#click-capture').click(function() {
+                const video = document.getElementById('video');
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+                const data = canvas.toDataURL('image/png');
+                $('#current-photo').val(data);
+                $('#current_photo').html(`<img src="${data}" class="img-fluid" alt="Responsive image">`);
+                $('#capture').removeClass('show').addClass('hide');
+                $('#file').removeClass('hide').addClass('show');
+            });
+        })
     </script>
+@endsection
+
+@section('styles')
+    <style>
+        .hide {
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+    </style>
 @endsection

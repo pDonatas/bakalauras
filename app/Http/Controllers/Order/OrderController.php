@@ -48,9 +48,39 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request, Service $service, PaymentServiceInterface $paymentService): RedirectResponse
     {
-        $order = new Order($request->validated());
+        $file = '';
+        if (isset($request['current_photo']) && $request['current_photo']) {
+            // convert base64 to file
+            $fileName = 'current_photo_' . time() . '.png';
+            if (! is_dir(storage_path('app/public/current_photos'))) {
+                mkdir(storage_path('app/public/current_photos'), 0777, true);
+            }
+
+            $path = storage_path('app/public/current_photos/' . $fileName);
+            $data = explode(',', $request['current_photo']);
+            $data = base64_decode($data[1]);
+            file_put_contents($path, $data);
+
+            $file = '/storage/current_photos/' . $fileName;
+        }
+
+        if (isset($request['current_photo_file']) && $request['current_photo_file']) {
+            $file = $request['current_photo_file']->store('public/current_photos');
+
+            $file = str_replace('public', '/storage', $file);
+        }
+
+        $request = $request->validated();
+        unset($request['current_photo'], $request['current_photo_file']);
+
+        $order = new Order($request);
         $order->user()->associate(auth()->user());
         $order->service()->associate($service);
+
+        if ('' !== ! $file) {
+            $order->current_photo = $file;
+        }
+
         $order->save();
 
         $url = route('user.orders');
