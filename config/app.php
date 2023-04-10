@@ -211,7 +211,9 @@ return [
     ])->toArray(),
 
     'ai' => [
-        'key' => env('OPENAI_API_KEY'),
+        'evoke_key' => env('EVOKE_API_KEY'),
+        'horde_key' => env('STABLE_HORDE_API_KEY'),
+        'openai_key' => env('OPENAI_API_KEY'),
     ],
     'locales' => [
         'lt' => 'Lietuvių',
