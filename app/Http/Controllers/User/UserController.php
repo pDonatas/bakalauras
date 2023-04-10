@@ -11,7 +11,9 @@ class UserController extends Controller
 {
     public function profile(): View
     {
-        return view('user.profile', ['user' => auth()->user()->withCount('orders', 'ownedShops')->first()]);
+        $user = \Auth::user()->loadCount('orders', 'ownedShops', 'marks');
+
+        return view('user.profile', ['user' => $user]);
     }
 
     public function orders(): View

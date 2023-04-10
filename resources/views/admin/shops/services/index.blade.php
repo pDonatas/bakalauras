@@ -24,15 +24,15 @@
                                 <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
                                 <div class="mb-3">
                                     <label for="name" class="form-label">{{ __('Name') }}</label>
-                                    <input type="text" name="name" class="form-control" id="name">
+                                    <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">{{ __('Description') }}</label>
-                                    <textarea name="description" class="form-control" id="description"></textarea>
+                                    <textarea name="description" class="form-control" id="description">{{ old('description') }}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="price" class="form-label">{{ __('Price') }}</label>
-                                    <input type="number" step="0.1" name="price" class="form-control" id="price">
+                                    <input type="number" step="0.1" name="price" class="form-control" value="{{ old('price') }}" id="price">
                                 </div>
                                 @if (auth()->user()->isAdmin() || $shop->owner_id == auth()->user()->id)
                                 <div class="mb-3">
@@ -48,7 +48,7 @@
                                 @endif
                             <div class="mb-3">
                                 <label for="duration" class="form-label">{{ __('Duration') }} ({{ __('in minutes') }})</label>
-                                <input type="number" name="length" class="form-control" id="duration">
+                                <input type="number" value="{{ old('duration') }}" name="length" class="form-control" id="duration">
                             </div>
                             <div class="mb-3">
                                 <label for="category" class="form-label">{{ __('Category') }}</label>

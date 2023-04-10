@@ -1,7 +1,7 @@
 <div>
     @foreach($services as $service)
         <div class="service">
-            <div class="name">{{ $service->name }} / 5</div>
+            <div class="name">{{ $service->name }} <span>5/ 5</span></div>
             <div class="description">{!! $service->description !!}</div>
             <div class="author">
                 <img src="{{ $service->worker->photo }}" alt="" />

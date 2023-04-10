@@ -210,5 +210,17 @@
     "Sunday": "Sekmadienis",
     "Work time from": "Darbo laikas nuo",
     "Work time to": "Darbo laikas iki",
-    "Calendar management": "Kalendoriaus tvarkymas"
+    "Calendar management": "Kalendoriaus tvarkymas",
+    "Rating": "Įvertinimai",
+    "About": "Apie",
+    "Company Name": "Pavadinimas",
+    "City": "Miestas",
+    "Select City": "Pasirinkite miestą",
+    "Joined": "Prisijungė",
+    "I have :ownedShops owned shops, :ordersCount orders and :reviewsCount reviews": "Aš turiu :ownedShops savo salonus, :ordersCount užsakymų ir :reviewsCount įvertinimų",
+    "Sales :dateFrom - :dateTo": "Užsakymai :dateFrom - :dateTo",
+    "Monthly Recap Report": "Mėnesio ataskaita",
+    "Unique Clients": "Unikalūs klientai",
+    "Latest Orders": "Paskutiniai užsakymai",
+    "Order name": "Užsakymo pavadinimas"
 }

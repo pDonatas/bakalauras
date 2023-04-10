@@ -22,8 +22,13 @@
             <div class="col-md-9">
                 <div class="card card-default">
                     <div class="card-body">
-                        <h3 class="card-title">About Me</h3>
-                        <p class="card-text">I have {{ $user->owned_shops_count }} owned shops, {{ $user->orders_count }} orders</p>
+                        <h3 class="card-title">{{ __('About') }}</h3>
+                        <p class="card-text">
+                            {{ __('I have :ownedShops owned shops, :ordersCount orders and :reviewsCount reviews', [
+                                'ownedShops' => $user->owned_shops_count,
+                                'ordersCount' => $user->orders_count,
+                                'reviewsCount' => $user->marks_count
+                            ]) }}
                     </div>
                 </div>
             </div>
