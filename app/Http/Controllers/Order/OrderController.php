@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Order;
 
+use App\Events\OrderPaid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
@@ -104,6 +105,8 @@ class OrderController extends Controller
             $order = Order::find($parsed['orderid']);
             $order->status = Order::STATUS_PAID;
             $order->save();
+
+            event(new OrderPaid($order));
         }
 
         return view('user.orders.success');

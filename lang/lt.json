@@ -222,5 +222,14 @@
     "Monthly Recap Report": "Mėnesio ataskaita",
     "Unique Clients": "Unikalūs klientai",
     "Latest Orders": "Paskutiniai užsakymai",
-    "Order name": "Užsakymo pavadinimas"
+    "Order name": "Užsakymo pavadinimas",
+    "Your payment for order #:orderNumber has been received.": "Jūsų mokėjimas už užsakymą #:orderNumber buvo priimtas.",
+    "Order total: :price EUR": "Užsakymo suma: :price EUR",
+    "Service name: :serviceName": "Paslaugos pavadinimas: :serviceName",
+    "Service date: :date": "Paslaugos data: :date",
+    "View Order": "Peržiūrėti užsakymą",
+    "Your payment for order #:orderId (:serviceName) has been received. Date: :date": "Jūsų mokėjimas už užsakymą #:orderId (:serviceName) buvo priimtas. Data: :date",
+    "We're happy to inform you that your order has been approved": "Mes džiaugiamės pranešdami, kad jūsų užsakymas buvo patvirtintas",
+    "We're sorry to inform you that your order has been canceled": "Mes nemaloniai pranešame, kad jūsų užsakymas buvo atšauktas",
+    "Payment received for order #:orderNumber": "Mokėjimas priimtas už užsakymą #:orderNumber"
 }
