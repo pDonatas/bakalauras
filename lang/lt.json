@@ -231,5 +231,13 @@
     "Your payment for order #:orderId (:serviceName) has been received. Date: :date": "Jūsų mokėjimas už užsakymą #:orderId (:serviceName) buvo priimtas. Data: :date",
     "We're happy to inform you that your order has been approved": "Mes džiaugiamės pranešdami, kad jūsų užsakymas buvo patvirtintas",
     "We're sorry to inform you that your order has been canceled": "Mes nemaloniai pranešame, kad jūsų užsakymas buvo atšauktas",
-    "Payment received for order #:orderNumber": "Mokėjimas priimtas už užsakymą #:orderNumber"
+    "Payment received for order #:orderNumber": "Mokėjimas priimtas už užsakymą #:orderNumber",
+    "Show": "Rodyti",
+    "Leave a review": "Palikti atsiliepimą",
+    "Add to favorites": "Pridėti į mėgstamus",
+    "Remove from favorites": "Pašalinti iš mėgstamų",
+    "Filters": "Filtrai",
+    "Favorites": "Mėgstami",
+    "Select Category": "Pasirinkite kategoriją",
+    "Search": "Ieškoti"
 }

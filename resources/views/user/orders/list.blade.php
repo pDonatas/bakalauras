@@ -39,8 +39,12 @@
                                     <td>{{ $order->order_type }}</td>
                                     <td>
                                         {{ $order->statusText }}
+                                        <a href="{{ route('orders.show', $order->id) }}">{{ __('Show') }}</a>
                                         @if ($order->status < 2)
                                             <a href="{{ route('orders.cancel', $order->id) }}">{{ __('Cancel') }}</a>
+                                            <a href="{{ route('orders.edit', $order->id) }}">{{ __('Edit') }}</a>
+                                        @else
+                                            <a href="{{ route('orders.review', $order->id) }}">{{ __('Leave a review') }}</a>
                                         @endif
                                     </td>
                                 </tr>

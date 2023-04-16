@@ -24,7 +24,13 @@ class MainController
             ->get();
         $cities = City::cases();
         $categories = Category::all();
+        $favorites = auth()->user()->bookmarks ?? [];
 
-        return view('index', compact('shops', 'categories', 'cities'));
+        if ($favorites) {
+            $favorites = $favorites->pluck('shop_id')->toArray();
+            $favorites = $shops->filter(fn ($shop) => in_array($shop->id, $favorites));
+        }
+
+        return view('index', compact('shops', 'categories', 'cities', 'favorites'));
     }
 }

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Order;
 use App\Events\OrderPaid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrdersRequest;
 use App\Models\Order;
 use App\Models\Service;
 use App\Services\Payments\PaymentServiceInterface;
@@ -130,5 +131,91 @@ class OrderController extends Controller
         $order->save();
 
         return redirect()->route('user.orders');
+    }
+
+    public function edit(Order $order): View
+    {
+        $workDay = $order->service->worker->workDay;
+        $service = $order->service;
+
+        $workDays = $workDay ? $workDay->days : [];
+
+        // calculate days to hide
+        $hiddenDays = [];
+        for ($i = 1; $i <= 7; $i++) {
+            if (! in_array($i, $workDays)) {
+                if (7 == $i) {
+                    $hiddenDays[] = 0;
+                } else {
+                    $hiddenDays[] = $i;
+                }
+            }
+        }
+
+        return view('user.orders.edit', compact('order', 'hiddenDays', 'service'));
+    }
+
+    public function update(UpdateOrdersRequest $request, Order $order): RedirectResponse
+    {
+        $order->fill($request->validated());
+
+        $file = '';
+        if (isset($request['current_photo']) && $request['current_photo']) {
+            // convert base64 to file
+            $fileName = 'current_photo_' . time() . '.png';
+            if (! is_dir(storage_path('app/public/current_photos'))) {
+                mkdir(storage_path('app/public/current_photos'), 0777, true);
+            }
+
+            $path = storage_path('app/public/current_photos/' . $fileName);
+            $data = explode(',', $request['current_photo']);
+            $data = base64_decode($data[1]);
+            file_put_contents($path, $data);
+
+            $file = '/storage/current_photos/' . $fileName;
+        }
+
+        if (isset($request['current_photo_file']) && $request['current_photo_file']) {
+            $file = $request['current_photo_file']->store('public/current_photos');
+
+            $file = str_replace('public', '/storage', $file);
+        }
+
+        if ('' !== ! $file) {
+            $order->current_photo = $file;
+        }
+
+        $order->save();
+
+        return redirect()->route('user.orders');
+    }
+
+    public function show(Order $order): View
+    {
+        $workDay = $order->service->worker->workDay;
+        $service = $order->service;
+
+        $workDays = $workDay ? $workDay->days : [];
+
+        // calculate days to hide
+        $hiddenDays = [];
+        for ($i = 1; $i <= 7; $i++) {
+            if (! in_array($i, $workDays)) {
+                if (7 == $i) {
+                    $hiddenDays[] = 0;
+                } else {
+                    $hiddenDays[] = $i;
+                }
+            }
+        }
+
+        return view('user.orders.show', compact('order', 'hiddenDays', 'service'));
+    }
+
+    public function review(Order $order): View
+    {
+        $shop = $order->service->shop;
+
+        return view('user.orders.review', compact('shop'));
     }
 }
