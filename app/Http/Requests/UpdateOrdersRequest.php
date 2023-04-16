@@ -13,7 +13,7 @@ class UpdateOrdersRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check() && auth()->user()->isGranted(1);
+        return auth()->check();
     }
 
     /**
