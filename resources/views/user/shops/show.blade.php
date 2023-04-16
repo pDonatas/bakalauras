@@ -103,8 +103,19 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="about">
-                                            <h3>Apie</h3>
+                                            <h3>{{ __('About') }}</h3>
                                             {!! $shop->description !!}
+                                            <hr>
+                                            <h3>{{ __('Address') }}</h3>
+                                            <iframe
+                                                width="600"
+                                                height="450"
+                                                style="border:0"
+                                                loading="lazy"
+                                                allowfullscreen
+                                                referrerpolicy="no-referrer-when-downgrade"
+                                                src="https://www.google.com/maps/embed/v1/place?key={{ config('google.maps_key') }}&q={{ $shop->company_address }}">
+                                            </iframe>
                                         </div>
                                     </div>
                                 </div>
