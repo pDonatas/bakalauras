@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="text-center">
                             <img src="{{ $user->avatar }}" class="rounded-circle" width="150">
-                            <h4 class="mt-2">{{ $user->name }}</h4>
+                            <h4 class="mt-2">{{ $user->name }} <span><a href="{{ route('profile.edit') }}"><i class="fa-solid fa-pen-to-square"></i></a></span></h4>
                             <p class="lead text-muted">{{ $user->getRole() }}</p>
                             <p class="lead text-muted">{{ $user->email }}</p>
                             <p class="lead text-muted">{{ __('Joined') }} {{ $user->created_at->diffForHumans() }}</p>
