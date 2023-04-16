@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateOrdersRequest extends FormRequest
@@ -13,7 +14,10 @@ class UpdateOrdersRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check();
+        $order = $this->route('order');
+        assert($order instanceof Order);
+
+        return auth()->check() && auth()->user()->id == $order->user_id;
     }
 
     /**
