@@ -56,7 +56,7 @@ class DashboardService
             $averageRating = Mark::avg('mark') ?? 0;
         }
 
-        return $averageRating;
+        return (float) $averageRating;
     }
 
     public function getUniqueClientsCount(?int $userId = null): int

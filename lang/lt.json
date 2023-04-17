@@ -239,5 +239,12 @@
     "Filters": "Filtrai",
     "Favorites": "Mėgstami",
     "Select Category": "Pasirinkite kategoriją",
-    "Search": "Ieškoti"
+    "Search": "Ieškoti",
+    "Time changed for order #:orderNumber": "Laikas pakeistas už užsakymą #:orderNumber",
+    "Your order #:orderNumber time has been changed.": "Jūsų užsakymo #:orderNumber laikas buvo pakeistas.",
+    "Old date: :date": "Senas laikas: :date",
+    "New date: :date": "Naujas laikas: :date",
+    "Your order #:orderId (:serviceName) time has been changed. Date: :date": "Jūsų užsakymo #:orderId (:serviceName) laikas buvo pakeistas. Data: :date",
+    "Order #:orderId (:serviceName) time has been changed. Date: :date": "Užsakymo #:orderId (:serviceName) laikas buvo pakeistas. Data: :date",
+    "Order #:orderNumber time has been changed.": "Užsakymo #:orderNumber laikas buvo pakeistas."
 }
