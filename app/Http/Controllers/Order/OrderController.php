@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Order;
 
 use App\Events\OrderPaid;
+use App\Events\OrderTimeChanged;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrdersRequest;
@@ -157,7 +158,13 @@ class OrderController extends Controller
 
     public function update(UpdateOrdersRequest $request, Order $order): RedirectResponse
     {
+        $oldTime = $order->time;
+        $oldDate = $order->date;
         $order->fill($request->validated());
+
+        if ($oldTime != $order->time || $oldDate != $order->date) {
+            event(new OrderTimeChanged($order, $oldTime, $oldDate));
+        }
 
         $file = '';
         if (isset($request['current_photo']) && $request['current_photo']) {
