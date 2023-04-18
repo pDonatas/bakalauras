@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
     Route::get('orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('orders/{order}/update', [OrderController::class, 'update'])->name('orders.update');
-    Route::get('orders/{service}', [OrderController::class, 'create'])->name('orders.create');
+    Route::get('orders/{service}/create', [OrderController::class, 'create'])->name('orders.create');
     Route::post('orders/{service}', [OrderController::class, 'store'])->name('orders.store');
 
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');

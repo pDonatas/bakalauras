@@ -183,7 +183,7 @@ readonly class AIService
 
             Photo::create([
                 'query' => $query,
-                'image' => $path,
+                'path' => $path,
             ]);
 
             $image = $path;
@@ -213,8 +213,8 @@ readonly class AIService
         $data = json_decode($response->getBody()->getContents());
 
         $images = [];
-        if (isset($data->images)) {
-            foreach ($data->images as $image) {
+        if (isset($data->data)) {
+            foreach ($data->data as $image) {
                 $images[] = $image->url;
             }
         }

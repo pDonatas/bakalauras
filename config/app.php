@@ -219,4 +219,6 @@ return [
         'lt' => 'Lietuvių',
         'en' => 'English',
     ],
+
+    'translator_url' => env('TRANSLATOR_URL'),
 ];
