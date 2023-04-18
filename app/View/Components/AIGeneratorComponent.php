@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Components;
 
 use App\Models\Service;
@@ -20,9 +22,9 @@ class AIGeneratorComponent extends Component
         // Build form fields based on service
         $category = $this->service->category->id;
         $form = match ($category) {
-            1, 7, 8, 9 => 'components.forms.ai.hair',
-            2 => 'components.forms.ai.nails',
-            default => 'empty',
+            2, 11, 13, 12 => 'components.forms.ai.hair',
+            5, 6, 14, 15 => 'components.forms.ai.nails',
+            default => 'components.forms.ai.custom',
         };
 
         return view($form, [

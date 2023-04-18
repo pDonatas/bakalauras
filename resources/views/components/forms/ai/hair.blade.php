@@ -38,6 +38,6 @@
                 <option value="other">{{ __('Other') }}</option>
             </select>
         </div>
-        <x-input type="submit" value="Submit" class="btn btn-primary" />
+        <x-input type="submit" value="{{ __('Submit') }}" class="btn btn-primary" />
     </form>
 </div>
