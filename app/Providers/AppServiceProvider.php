@@ -9,6 +9,7 @@ use App\Services\Payments\PayseraService;
 use App\Services\RabbitMQ\Connector\RabbitMQConnector;
 use Illuminate\Container\Container;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Twilio\Rest\Client;
 
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
 
         $this->app->bind(
             PaymentServiceInterface::class,
