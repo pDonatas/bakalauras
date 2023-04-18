@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
+use App\Http\Services\AIService;
 use App\Services\AI\AILanguageService;
-use App\Services\Images\ImageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -12,46 +14,24 @@ class AIController extends Controller
 {
     public function __construct(
         private readonly AILanguageService $aiLanguageService,
-        private readonly ImageService $imageService
+        private readonly AIService $aiService
     ) {}
 
     public function generateImage(Request $request): JsonResponse
     {
         $query = $this->aiLanguageService->buildQuery($request->all());
         $imageData = Cache::get($query, function () use ($query) {
-            $endpoint = 'https://api.openai.com/v1/images/generations';
-            $data = [
-                'model' => 'image-alpha-001',
-                'prompt' => $query,
-                'num_images' => 6,
-                'size' => '256x256',
-            ];
+            $images = $this->aiService->generateImages($query, 6);
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $endpoint);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . config('app.ai.key'), // Replace with your OpenAI API key
-            ]);
-            $response = curl_exec($ch);
-            $data = json_decode($response, true);
-
-            if (! isset($data['data'])) {
-                return [
-                    'data' => [],
-                ];
+            if (empty($images)) {
+                return [];
             }
 
-            $data['data'] = $this->imageService->upload($data['data']);
+            Cache::put($query, $images);
 
-            Cache::put($query, $data);
-
-            return $data;
+            return $images;
         });
 
-        return new JsonResponse(['data' => $imageData['data']], 200);
+        return new JsonResponse(['data' => $imageData], 200);
     }
 }

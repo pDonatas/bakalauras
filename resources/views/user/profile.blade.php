@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div class="text-center">
                             <img src="{{ $user->avatar }}" class="rounded-circle" width="150">
-                            <h4 class="mt-2">{{ $user->name }}</h4>
+                            <h4 class="mt-2">{{ $user->name }} <span><a href="{{ route('profile.edit') }}"><i class="fa-solid fa-pen-to-square"></i></a></span></h4>
                             <p class="lead text-muted">{{ $user->getRole() }}</p>
                             <p class="lead text-muted">{{ $user->email }}</p>
                             <p class="lead text-muted">{{ __('Joined') }} {{ $user->created_at->diffForHumans() }}</p>
@@ -22,8 +22,13 @@
             <div class="col-md-9">
                 <div class="card card-default">
                     <div class="card-body">
-                        <h3 class="card-title">About Me</h3>
-                        <p class="card-text">I have {{ $user->owned_shops_count }} owned shops, {{ $user->orders_count }} orders</p>
+                        <h3 class="card-title">{{ __('About') }}</h3>
+                        <p class="card-text">
+                            {{ __('I have :ownedShops owned shops, :ordersCount orders and :reviewsCount reviews', [
+                                'ownedShops' => $user->owned_shops_count,
+                                'ordersCount' => $user->orders_count,
+                                'reviewsCount' => $user->marks_count
+                            ]) }}
                     </div>
                 </div>
             </div>

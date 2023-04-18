@@ -11,7 +11,7 @@
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                     <!-- User image -->
                     <li class="user-header bg-primary">
-                        <img src="{{ auth()->user()->photo }}" class="img-circle shadow" alt="User Image">
+                        <img src="{{ auth()->user()->avatar }}" class="img-circle shadow" alt="User Image">
 
                         <p>
                             {{ Auth::user()->name }}

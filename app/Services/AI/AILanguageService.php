@@ -4,50 +4,68 @@ declare(strict_types=1);
 
 namespace App\Services\AI;
 
+use App\Models\Category;
+use GuzzleHttp\Client;
+
 class AILanguageService
 {
+    public function __construct(
+        private readonly Client $client
+    ) {}
+
+    /**
+     * @param array<string, mixed> $data
+     */
     public function buildQuery(array $data): string
     {
         $category = $data['category_id'];
         $replaced = '';
         switch ($category) {
-            case 1:
-                $query = 'A photo of hair with ';
+            case 2:
+            case 11:
+            case 12:
+            case 13:
                 $replaced = 'hair';
                 break;
-            case 2:
-                $query = 'A photo of nails with ';
+            case 5:
+            case 6:
+            case 14:
+            case 15:
                 $replaced = 'nails';
                 break;
-            case 3:
-                $query = 'A photo of a face with ';
-                $replaced = 'face';
-                break;
-            case 7:
-                $query = 'A photo of a man hair with ';
-                $replaced = 'man hair';
-                break;
-            case 8:
-                $query = 'A photo of a woman hair with ';
-                $replaced = 'woman hair';
-                break;
-            case 9:
-                $query = 'A photo of a child hair with ';
-                $replaced = 'child hair';
-                break;
             default:
-                $query = 'A photo of a ';
                 break;
         }
 
-        unset($data['category_id']);
-        unset($data['_token']);
+        $query = 'A photo of a ';
 
-        foreach ($data as $key => $value) {
-            $key = str_replace(['_', $replaced], [' ', ''], $key);
-            $query .= $key . ' ' . $value . ', ';
+        if ('' === $replaced) {
+            $query .= $this->translate($data['description']);
+        } else {
+            $category = Category::find($category)->name;
+            $query .= $this->translate($category);
+            $query .= ' with ';
+
+            unset($data['category_id']);
+            unset($data['_token']);
+
+            foreach ($data as $key => $value) {
+                $key = str_replace(['_', $replaced], [' ', ''], $key);
+                $query .= $key . ' ' . $value . ', ';
+            }
         }
 
         return $query;
+    }
+
+    private function translate(string $data): string
+    {
+        $response = $this->client->request('POST', config('app.translator_url'), [
+            'json' => [
+                'input' => $data,
+            ],
+        ]);
+
+        return $response->getBody()->getContents();
     }
 }

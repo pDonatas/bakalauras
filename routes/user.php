@@ -20,10 +20,16 @@ Route::middleware('auth')->group(function () {
     Route::get('orders/fail', [OrderController::class, 'fail'])->name('orders.fail');
     Route::get('orders/callback', [OrderController::class, 'callback'])->name('orders.callback');
     Route::get('orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
-    Route::get('orders/{service}', [OrderController::class, 'create'])->name('orders.create');
+    Route::get('orders/{order}/review', [OrderController::class, 'review'])->name('orders.review');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('orders/{order}/update', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('orders/{service}/create', [OrderController::class, 'create'])->name('orders.create');
     Route::post('orders/{service}', [OrderController::class, 'store'])->name('orders.store');
 
     Route::get('user/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/user/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::put('/user/profile/edit', [UserController::class, 'update'])->name('profile.update');
     Route::get('user/orders', [UserController::class, 'orders'])->name('user.orders');
 
     Route::get('shop/bookmark/{shop}', [BookmarkController::class, 'create'])->name('bookmark.create');

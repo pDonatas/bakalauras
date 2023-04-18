@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
-use App\Models\Shop;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -32,13 +32,15 @@ class RegisteredUserController extends Controller
             'role' => $role,
         ]);
 
-        if ($role === User::ROLE_BARBER) {
-            $user->shops()->create([
+        if (User::ROLE_BARBER === $role) {
+            $shop = $user->ownedShops()->create([
                 'company_name' => $request->company_name,
                 'company_code' => $request->company_code,
                 'company_address' => $request->company_address,
                 'company_phone' => $request->company_phone,
             ]);
+
+            $user->shops()->attach($shop);
         }
 
         event(new Registered($user));

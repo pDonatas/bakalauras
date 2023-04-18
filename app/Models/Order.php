@@ -94,4 +94,12 @@ class Order extends Model
             'end'   => Carbon::createFromFormat('Y-m-d H:i', $this->date . ' ' . $this->time)->addMinutes($this->length)->toIso8601String(),
         ];
     }
+
+    /**
+     * @return HasOneThrough<Shop>
+     */
+    public function shop(): HasOneThrough
+    {
+        return $this->hasOneThrough(Shop::class, Service::class, 'id', 'id', 'service_id', 'shop_id');
+    }
 }
