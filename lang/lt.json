@@ -247,5 +247,9 @@
     "Your order #:orderId (:serviceName) time has been changed. Date: :date": "Jūsų užsakymo #:orderId (:serviceName) laikas buvo pakeistas. Data: :date",
     "Order #:orderId (:serviceName) time has been changed. Date: :date": "Užsakymo #:orderId (:serviceName) laikas buvo pakeistas. Data: :date",
     "Order #:orderNumber time has been changed.": "Užsakymo #:orderNumber laikas buvo pakeistas.",
-    "Example: Black hair with red stripes": "Pavyzdys: Juodi plaukai su raudonomis sruogelėmis"
+    "Example: Black hair with red stripes": "Pavyzdys: Juodi plaukai su raudonomis sruogelėmis",
+    "Company name": "Pavadinimas",
+    "Company code": "Įmonės kodas",
+    "Company address": "Adresas",
+    "Company phone": "Telefonas"
 }
