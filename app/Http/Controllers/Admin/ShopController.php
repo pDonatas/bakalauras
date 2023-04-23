@@ -80,7 +80,7 @@ class ShopController extends Controller
         }
 
         $request = $request->validated();
-        $workers = $request['workers'];
+        $workers = $request['workers'] ?? [];
         unset($request['workers']);
 
         $shop->update($request);
