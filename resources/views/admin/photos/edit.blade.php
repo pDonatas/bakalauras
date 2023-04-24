@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            {{ __('Current photo') }} <img src="{{ $photo->path }}" />
+            {{ __('Current photo') }} <img src="{{ $photo->path }}"  alt="Current photo"/>
             <form method="post" action="{{ route('admin.photos.update', [$shop->id, $service->id, $photo->id]) }}" enctype="multipart/form-data">
                 <input type="file" name="path" class="form-control" accept="image/*"/>
                 <input type="hidden" name="_method" value="PUT">
