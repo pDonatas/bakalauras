@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Http\Controllers\User;
+namespace Tests\Feature\User;
 
 use App\Http\Controllers\User\UserController;
 use App\Http\Requests\UserEditRequest;

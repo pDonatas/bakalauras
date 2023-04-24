@@ -6371,16 +6371,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "7.2.0",
+            "version": "7.3.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:twilio/twilio-php.git",
-                "reference": "11271c602398f7678dc465dcab97601e6e866819"
+                "reference": "db64f7b5555b1bb4b5ea1511917cadf064342c0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/11271c602398f7678dc465dcab97601e6e866819",
-                "reference": "11271c602398f7678dc465dcab97601e6e866819",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/db64f7b5555b1bb4b5ea1511917cadf064342c0e",
+                "reference": "db64f7b5555b1bb4b5ea1511917cadf064342c0e",
                 "shasum": ""
             },
             "require": {
@@ -6416,7 +6416,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2023-04-05T22:21:08+00:00"
+            "time": "2023-04-20T07:20:58+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -8262,16 +8262,16 @@
         },
         {
             "name": "laravel-lang/lang",
-            "version": "12.21.1",
+            "version": "12.21.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Laravel-Lang/lang.git",
-                "reference": "d984be751718c8b4d57a5f5579c411b2bef3b61f"
+                "reference": "f270a9de8ae3f865185d3fba0fb12b7764869a4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/d984be751718c8b4d57a5f5579c411b2bef3b61f",
-                "reference": "d984be751718c8b4d57a5f5579c411b2bef3b61f",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/f270a9de8ae3f865185d3fba0fb12b7764869a4a",
+                "reference": "f270a9de8ae3f865185d3fba0fb12b7764869a4a",
                 "shasum": ""
             },
             "require": {
@@ -8324,7 +8324,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-04-18T07:40:44+00:00"
+            "time": "2023-04-24T08:48:59+00:00"
         },
         {
             "name": "laravel-lang/publisher",
