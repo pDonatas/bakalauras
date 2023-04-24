@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PhotoCreateRequest;
+use App\Http\Requests\PhotoUpdateRequest;
 use App\Models\Photo;
 use App\Models\Service;
 use App\Models\Shop;
@@ -52,13 +55,14 @@ class PhotoController extends Controller
         return new JsonResponse([
             'success' => true,
             'message' => 'Photo uploaded successfully',
+            'path' => '/storage/images/services/' . $service->id . '/' . $newName,
         ], 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Photo $photo)
+    public function show(Shop $shop, Service $service, Photo $photo)
     {
         return view('admin.photos.show', compact('photo'));
     }
@@ -66,15 +70,15 @@ class PhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Photo $photo)
+    public function edit(Shop $shop, Service $service, Photo $photo)
     {
-        return view('admin.photos.edit', compact('photo'));
+        return view('admin.photos.edit', compact('photo', 'shop', 'service'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Shop $shop, Service $service, UpdatePhotoRequest $request, Photo $photo)
+    public function update(Shop $shop, Service $service, PhotoUpdateRequest $request, Photo $photo)
     {
         $photo->update($request->validated());
 

@@ -61,6 +61,10 @@ class OrderController extends Controller
 
             $path = storage_path('app/public/current_photos/' . $fileName);
             $data = explode(',', $request['current_photo']);
+            if (! isset($data[1])) {
+                return redirect()->back()->with('error', 'Invalid image');
+            }
+
             $data = base64_decode($data[1]);
             file_put_contents($path, $data);
 
@@ -99,7 +103,7 @@ class OrderController extends Controller
     {
         if ($request->data) {
             $data = base64_decode($request->data);
-            if (! $data) {
+            if (! $data || ! str_contains($data, 'orderid')) {
                 return view('user.orders.fail');
             }
 

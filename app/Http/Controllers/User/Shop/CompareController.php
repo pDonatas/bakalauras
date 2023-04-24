@@ -19,7 +19,7 @@ class CompareController extends Controller
 
     public function compare(Request $request): Response
     {
-        $ids = $request->get('ids');
+        $ids = $request->string('ids')->toString();
         $ids = str_replace(['[', ']'], '', $ids);
         $ids = explode(',', $ids);
 
