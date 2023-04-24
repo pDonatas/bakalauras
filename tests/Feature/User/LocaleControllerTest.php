@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace Tests\Feature\User;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class LocaleControllerTest extends TestCase
 {
-    use DatabaseTransactions;
-
     public function testLocaleCanBeChanged(): void
     {
-        $response = $this->post(route('locale.index', ['locale' => 'fr']));
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $response = $this->get(route('locale', ['locale' => 'fr']));
 
         $response->assertRedirect();
         $response->assertSessionHas('locale', 'fr');

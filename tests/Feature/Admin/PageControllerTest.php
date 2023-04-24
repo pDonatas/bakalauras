@@ -32,11 +32,11 @@ class PageControllerTest extends TestCase
     {
         $shop = Shop::factory()->create();
         $page = Page::factory()->create(['shop_id' => $shop->id]);
+        assert($page instanceof Page);
 
         $response = $this->get(route('admin.pages.index', $shop->id));
 
         $response->assertStatus(200);
-        assert(isset($page->title));
         $response->assertSee($page->title);
     }
 
