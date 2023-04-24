@@ -9,10 +9,12 @@ use App\Models\Service;
 use App\Models\Shop;
 use App\Models\User;
 use App\Services\DashboardService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AdminControllerTest extends TestCase
 {
+    use RefreshDatabase;
     public function testAdminCanAccessDashboard(): void
     {
         $user = User::factory()->create([

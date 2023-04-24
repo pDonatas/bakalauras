@@ -7,6 +7,7 @@ use App\Http\Services\AIService;
 use App\Services\AI\AILanguageService;
 use Closure;
 use Illuminate\Cache\CacheManager;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Mockery;
@@ -18,6 +19,8 @@ use Tests\TestCase;
 
 class AIControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     private AIController $controller;
     private AILanguageService $aiLanguageServiceMock;
 

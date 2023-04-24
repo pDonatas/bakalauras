@@ -6,10 +6,13 @@ namespace Tests\Feature\User;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class LocaleControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testLocaleCanBeChanged(): void
     {
         $user = User::factory()->create();
