@@ -1,0 +1,72 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+    php:
+        container_name: bakis_php
+        build:
+            context: .
+            dockerfile: docker/8.1/Dockerfile
+            args:
+                - user=donatas
+                - uid=1000
+        image: donatas/barbershop_php:latest
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - "9000:9000"
+            - "5000:5000"
+        volumes:
+            - '.:/var/www/html'
+            - './docker/8.1/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini'
+        restart: on-failure
+        networks:
+            - sail
+        depends_on:
+            - mysql
+            - redis
+    mysql:
+        container_name: bakis_mysql
+        image: 'bitnami/mariadb:latest'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MARIADB_ROOT_PASSWORD: 'test'
+            MARIADB_ROOT_HOST: "%"
+            MARIADB_DATABASE: 'test'
+            MARIADB_USER: 'test'
+            MARIADB_PASSWORD: 'test'
+            MARIADB_ALLOW_EMPTY_PASSWORD: 0
+        volumes:
+            - 'mysql:/bitnami/mariadb'
+        networks:
+            - sail
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            retries: 3
+            timeout: 5s
+
+    redis:
+        image: 'redis:alpine'
+        volumes:
+            - 'sail-redis:/data'
+        networks:
+            - sail
+        healthcheck:
+            test: ["CMD", "redis-cli", "ping"]
+            retries: 3
+            timeout: 5s
+    rabbitmq:
+        image: 'rabbitmq:3-management'
+        ports:
+            - '${FORWARD_RABBITMQ_PORT:-15672}:15672'
+            - '${FORWARD_RABBITMQ_PORT:-5672}:5672'
+        networks:
+            - sail
+networks:
+    sail:
+        driver: bridge
+volumes:
+    mysql:
+        driver: local
+    sail-redis:
+        driver: local
