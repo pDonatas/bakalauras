@@ -28,7 +28,7 @@ class PageControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testAdminCanViewPageIndex()
+    public function testAdminCanViewPageIndex(): void
     {
         $shop = Shop::factory()->create();
         $page = Page::factory()->create(['shop_id' => $shop->id]);
@@ -36,10 +36,11 @@ class PageControllerTest extends TestCase
         $response = $this->get(route('admin.pages.index', $shop->id));
 
         $response->assertStatus(200);
+        assert(isset($page->title));
         $response->assertSee($page->title);
     }
 
-    public function testAdminCanCreatePage()
+    public function testAdminCanCreatePage(): void
     {
         $shop = Shop::factory()->create();
         $name = $this->faker->title;
@@ -58,10 +59,14 @@ class PageControllerTest extends TestCase
         ]);
     }
 
-    public function testAdminCanViewEditPage()
+    public function testAdminCanViewEditPage(): void
     {
         $shop = Shop::factory()->create();
+
+        assert($shop instanceof Shop);
+
         $page = Page::factory()->create(['shop_id' => $shop->id]);
+        assert($page instanceof Page);
 
         $response = $this->get(route('admin.pages.edit', [$shop->id, $page->id]));
 
@@ -69,10 +74,16 @@ class PageControllerTest extends TestCase
         $response->assertSee($page->title);
     }
 
-    public function testAdminCanUpdatePage()
+    public function testAdminCanUpdatePage(): void
     {
         $shop = Shop::factory()->create();
+
+        assert($shop instanceof Shop);
+
         $page = Page::factory()->create(['shop_id' => $shop->id]);
+
+        assert($page instanceof Page);
+
         $newName = $this->faker->title;
         $newDescription = $this->faker->paragraph;
 
@@ -90,10 +101,15 @@ class PageControllerTest extends TestCase
         ]);
     }
 
-    public function testAdminCanDeletePage()
+    public function testAdminCanDeletePage(): void
     {
         $shop = Shop::factory()->create();
+
+        assert($shop instanceof Shop);
+
         $page = Page::factory()->create(['shop_id' => $shop->id]);
+
+        assert($page instanceof Page);
 
         $response = $this->delete(route('admin.pages.destroy', [$shop->id, $page->id]));
 

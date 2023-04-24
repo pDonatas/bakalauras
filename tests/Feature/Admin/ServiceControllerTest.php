@@ -26,7 +26,7 @@ class ServiceControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testItShouldReturnTheServicesIndexViewForAuthenticatedUsers()
+    public function testItShouldReturnTheServicesIndexViewForAuthenticatedUsers(): void
     {
         // Arrange
         $user = User::factory()->create();
@@ -43,7 +43,7 @@ class ServiceControllerTest extends TestCase
         $response->assertViewHas(['shop', 'services', 'categories']);
     }
 
-    public function testItShouldReturnTheEditViewForAuthenticatedUsers()
+    public function testItShouldReturnTheEditViewForAuthenticatedUsers(): void
     {
         // Arrange
         $shop = Shop::factory()->create();
@@ -59,7 +59,7 @@ class ServiceControllerTest extends TestCase
         $response->assertViewHas(['shop', 'service', 'categories']);
     }
 
-    public function testItShouldReturnARedirectResponseAfterCreatingAService()
+    public function testItShouldReturnARedirectResponseAfterCreatingAService(): void
     {
         // Arrange
         $shop = Shop::factory()->create();
@@ -76,7 +76,7 @@ class ServiceControllerTest extends TestCase
         $this->assertDatabaseHas('services', $serviceData);
     }
 
-    public function testItShouldReturnARedirectResponseAfterUpdatingAService()
+    public function testItShouldReturnARedirectResponseAfterUpdatingAService(): void
     {
         // Arrange
         $user = User::factory()->create([

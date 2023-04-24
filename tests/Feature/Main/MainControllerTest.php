@@ -14,7 +14,7 @@ class MainControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testItShouldReturnTheIndexView()
+    public function testItShouldReturnTheIndexView(): void
     {
         // Arrange
         $response = $this->get(route('index'));
@@ -25,7 +25,7 @@ class MainControllerTest extends TestCase
         $response->assertViewHasAll(['shops', 'categories', 'cities', 'favorites']);
     }
 
-    public function testItShouldFilterShopsByCategoryId()
+    public function testItShouldFilterShopsByCategoryId(): void
     {
         // Arrange
         $owner = User::factory()->create([
@@ -49,7 +49,7 @@ class MainControllerTest extends TestCase
         });
     }
 
-    public function testItShouldFilterShopsByCompanyName()
+    public function testItShouldFilterShopsByCompanyName(): void
     {
         // Arrange
         $owner = User::factory()->create([
@@ -68,7 +68,7 @@ class MainControllerTest extends TestCase
         });
     }
 
-    public function testItShouldFilterShopsByName()
+    public function testItShouldFilterShopsByName(): void
     {
         // Arrange
         $owner = User::factory()->create([
@@ -87,7 +87,7 @@ class MainControllerTest extends TestCase
         });
     }
 
-    public function testItShouldFilterShopsByCity()
+    public function testItShouldFilterShopsByCity(): void
     {
         // Arrange
         $owner = User::factory()->create([
@@ -106,7 +106,7 @@ class MainControllerTest extends TestCase
         });
     }
 
-    public function testItShouldFilterShopsByPriceFrom()
+    public function testItShouldFilterShopsByPriceFrom(): void
     {
         // Arrange
         $owner = User::factory()->create([
@@ -132,12 +132,12 @@ class MainControllerTest extends TestCase
         // Assert
         $response->assertStatus(200);
         $response->assertViewIs('index');
-        $response->assertViewHas('shops', function ($shops) use ($shop1, $shop2) {
+        $response->assertViewHas('shops', function ($shops) use ($shop2) {
             return $shops->count() === 1 && $shops->first()->id === $shop2->id;
         });
     }
 
-    public function testItShouldFilterShopsByPriceTo()
+    public function testItShouldFilterShopsByPriceTo(): void
     {
         // Arrange
         $user = User::factory()->create([
@@ -157,12 +157,12 @@ class MainControllerTest extends TestCase
         // Assert
         $response->assertStatus(200);
         $response->assertViewIs('index');
-        $response->assertViewHas('shops', function ($shops) use ($shop1, $shop2) {
+        $response->assertViewHas('shops', function ($shops) use ($shop1) {
             return $shops->count() === 1 && $shops->first()->id === $shop1->id;
         });
     }
 
-    public function testItShouldFilterFavoriteShops()
+    public function testItShouldFilterFavoriteShops(): void
     {
         // Arrange
         $user = User::factory()->create([
@@ -194,7 +194,7 @@ class MainControllerTest extends TestCase
         // Assert
         $response->assertStatus(200);
         $response->assertViewIs('index');
-        $response->assertViewHas('favorites', function ($favorites) use ($shop1, $shop2) {
+        $response->assertViewHas('favorites', function ($favorites) use ($shop1) {
             return $favorites->count() === 1 && $favorites->first()->id === $shop1->id;
         });
     }

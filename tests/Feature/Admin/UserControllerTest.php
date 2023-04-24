@@ -11,7 +11,7 @@ class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testItShouldReturnTheUsersIndexViewForAuthenticatedUsers()
+    public function testItShouldReturnTheUsersIndexViewForAuthenticatedUsers(): void
     {
         // Arrange
         $user = User::factory()->create([
@@ -28,7 +28,7 @@ class UserControllerTest extends TestCase
         $response->assertViewHas('users');
     }
 
-    public function testItShouldRedirectUnauthenticatedUsersToTheLoginPage()
+    public function testItShouldRedirectUnauthenticatedUsersToTheLoginPage(): void
     {
         // Act
         $response = $this->get(route('admin.users.index'));
@@ -38,7 +38,7 @@ class UserControllerTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    public function testItShouldCreateANewUser()
+    public function testItShouldCreateANewUser(): void
     {
         // Arrange
         $admin = User::factory()->create(['role' => User::ROLE_ADMIN]);
@@ -56,7 +56,7 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', ['email' => $userData['email']]);
     }
 
-    public function testItShouldShowAUser()
+    public function testItShouldShowAUser(): void
     {
         // Arrange
         $user = User::factory()->create();
@@ -72,7 +72,7 @@ class UserControllerTest extends TestCase
         $response->assertViewHas('user');
     }
 
-    public function testItShouldReturnTheEditViewForAuthenticatedUsers()
+    public function testItShouldReturnTheEditViewForAuthenticatedUsers(): void
     {
         // Arrange
         $user = User::factory()->create();
@@ -88,7 +88,7 @@ class UserControllerTest extends TestCase
         $response->assertViewHas('user');
     }
 
-    public function testItShouldUpdateAUser()
+    public function testItShouldUpdateAUser(): void
     {
         // Arrange
         $user = User::factory()->create();
@@ -105,7 +105,7 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', ['id' => $user->id, 'name' => $newData['name'], 'email' => $newData['email']]);
     }
 
-    public function testItShouldUpdateAUsersPassword()
+    public function testItShouldUpdateAUsersPassword(): void
     {
         // Arrange
         $user = User::factory()->create();
@@ -123,7 +123,7 @@ class UserControllerTest extends TestCase
         $this->assertTrue(Hash::check($newPassword, $user->fresh()->password));
     }
 
-    public function testItShouldDeleteAUser()
+    public function testItShouldDeleteAUser(): void
     {
         // Arrange
         $user = User::factory()->create();

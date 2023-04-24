@@ -31,7 +31,7 @@ class PhotoControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testAdminCanViewPhotoIndex()
+    public function testAdminCanViewPhotoIndex(): void
     {
         $user = User::factory()->create();
         $shop = Shop::factory()->create();
@@ -44,7 +44,7 @@ class PhotoControllerTest extends TestCase
         $response->assertSee($photo->path);
     }
 
-    public function testAdminCanViewCreatePhotoForm()
+    public function testAdminCanViewCreatePhotoForm(): void
     {
         $shop = Shop::factory()->create();
         $user = User::factory()->create();
@@ -55,7 +55,7 @@ class PhotoControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testAdminCanCreatePhoto()
+    public function testAdminCanCreatePhoto(): void
     {
         $shop = Shop::factory()->create();
         $user = User::factory()->create();
@@ -74,7 +74,7 @@ class PhotoControllerTest extends TestCase
         \Storage::disk('public')->delete($response->original['path']);
     }
 
-    public function testAdminCanViewPhoto()
+    public function testAdminCanViewPhoto(): void
     {
         $shop = Shop::factory()->create();
         $user = User::factory()->create();
@@ -89,7 +89,7 @@ class PhotoControllerTest extends TestCase
         $response->assertSee($photo->path);
     }
 
-    public function testAdminCanViewEditPhotoForm()
+    public function testAdminCanViewEditPhotoForm(): void
     {
         $shop = Shop::factory()->create();
         $user = User::factory()->create();
@@ -104,7 +104,7 @@ class PhotoControllerTest extends TestCase
         $response->assertSee($photo->path);
     }
 
-    public function testAdminCanUpdatePhoto()
+    public function testAdminCanUpdatePhoto(): void
     {
         $shop = Shop::factory()->create();
         $user = User::factory()->create();
@@ -121,7 +121,7 @@ class PhotoControllerTest extends TestCase
         $response->assertStatus(302);
     }
 
-    public function testAdminCanDeletePhoto()
+    public function testAdminCanDeletePhoto(): void
     {
         $shop = Shop::factory()->create();
         $user = User::factory()->create();

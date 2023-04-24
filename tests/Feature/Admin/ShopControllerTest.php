@@ -28,7 +28,7 @@ class ShopControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testItShouldReturnTheShopsIndexViewForAuthenticatedUsers()
+    public function testItShouldReturnTheShopsIndexViewForAuthenticatedUsers(): void
     {
         // Act
         $response = $this->get(route('admin.shops.index'));
@@ -39,7 +39,7 @@ class ShopControllerTest extends TestCase
         $response->assertViewHas(['shops', 'users']);
     }
 
-    public function testItShouldRedirectUnauthenticatedUsersToTheLoginPage()
+    public function testItShouldRedirectUnauthenticatedUsersToTheLoginPage(): void
     {
         $user = User::factory()->create();
         $this->actingAs($user);
@@ -51,7 +51,7 @@ class ShopControllerTest extends TestCase
         $response->assertRedirect(route('index'));
     }
 
-    public function testItShouldCreateANewShop()
+    public function testItShouldCreateANewShop(): void
     {
         // Arrange
         Storage::fake('public');
@@ -68,7 +68,7 @@ class ShopControllerTest extends TestCase
         $this->assertDatabaseHas('shops', ['company_name' => $shopData['company_name']]);
     }
 
-    public function testItShouldShowAShop()
+    public function testItShouldShowAShop(): void
     {
         // Arrange
         $shop = Shop::factory()->create();
@@ -82,7 +82,7 @@ class ShopControllerTest extends TestCase
         $response->assertViewHas('shop');
     }
 
-    public function testItShouldReturnTheEditViewForAuthenticatedUsers()
+    public function testItShouldReturnTheEditViewForAuthenticatedUsers(): void
     {
         // Arrange
         $shop = Shop::factory()->create();
@@ -96,7 +96,7 @@ class ShopControllerTest extends TestCase
         $response->assertViewHas(['shop', 'users']);
     }
 
-    public function testItShouldUpdateAShop()
+    public function testItShouldUpdateAShop(): void
     {
         // Arrange
         $shop = Shop::factory()->create();
@@ -114,7 +114,7 @@ class ShopControllerTest extends TestCase
         $this->assertDatabaseHas('shops', ['id' => $shop->id, 'company_name' => $newData['company_name']]);
     }
 
-    public function testItShouldDeleteAShop()
+    public function testItShouldDeleteAShop(): void
     {
         // Arrange
         $shop = Shop::factory()->create();

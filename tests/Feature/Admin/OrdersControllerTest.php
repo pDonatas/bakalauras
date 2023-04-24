@@ -29,7 +29,7 @@ class OrdersControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testIndex()
+    public function testIndex(): void
     {
         $response = $this->get(route('admin.orders.index'));
 
@@ -38,7 +38,7 @@ class OrdersControllerTest extends TestCase
         $response->assertViewHas('orders');
     }
 
-    public function testEdit()
+    public function testEdit(): void
     {
         $user = User::factory()->create();
         $shop = Shop::factory()->create([
@@ -62,7 +62,7 @@ class OrdersControllerTest extends TestCase
         $response->assertViewHas('services');
     }
 
-    public function testShow()
+    public function testShow(): void
     {
         $user = User::factory()->create();
         $shop = Shop::factory()->create([
@@ -87,7 +87,7 @@ class OrdersControllerTest extends TestCase
         $response->assertViewHas('services');
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $user = User::factory()->create();
         $shop = Shop::factory()->create([
@@ -125,7 +125,7 @@ class OrdersControllerTest extends TestCase
         ]);
     }
 
-    public function testDestroy()
+    public function testDestroy(): void
     {
         $user = User::factory()->create();
         $shop = Shop::factory()->create([

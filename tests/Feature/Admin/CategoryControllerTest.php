@@ -31,7 +31,7 @@ class CategoryControllerTest extends TestCase
         $this->actingAs($user);
     }
 
-    public function testIndex()
+    public function testIndex(): void
     {
         $admin = User::factory()->create([
             'role' => User::ROLE_ADMIN,
@@ -49,7 +49,7 @@ class CategoryControllerTest extends TestCase
         $this->assertInstanceOf(LengthAwarePaginator::class, $response->viewData('categories'));
     }
 
-    public function testEdit()
+    public function testEdit(): void
     {
         $admin = User::factory()->create([
             'role' => User::ROLE_ADMIN,
@@ -67,7 +67,7 @@ class CategoryControllerTest extends TestCase
         $this->assertInstanceOf(Category::class, $response->viewData('category'));
     }
 
-    public function testStore()
+    public function testStore(): void
     {
         $admin = User::factory()->create([
             'role' => User::ROLE_ADMIN,
@@ -89,7 +89,7 @@ class CategoryControllerTest extends TestCase
         $this->assertDatabaseHas('categories', $data);
     }
 
-    public function testUpdate()
+    public function testUpdate(): void
     {
         $admin = User::factory()->create([
             'role' => User::ROLE_ADMIN,
@@ -113,7 +113,7 @@ class CategoryControllerTest extends TestCase
         $this->assertDatabaseHas('categories', $data);
     }
 
-    public function testDestroy()
+    public function testDestroy(): void
     {
         $admin = User::factory()->create([
             'role' => User::ROLE_ADMIN,

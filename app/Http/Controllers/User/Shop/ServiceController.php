@@ -28,7 +28,7 @@ class ServiceController extends Controller
     {
         $selectedDate = $request->get('date');
         $workDay = $service->worker->workDay;
-        $workTimes = $workDay ? [$workDay->from, $workDay->to] : [];
+        $workTimes = $workDay ? [$workDay->from, $workDay->to] : [0, 0];
 
         $orders = Order::where('date', $selectedDate)
             ->where('service_id', $service->id)

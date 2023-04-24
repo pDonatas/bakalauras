@@ -10,11 +10,10 @@ use App\Models\Shop;
 use App\Models\User;
 use App\Services\DashboardService;
 use Tests\TestCase;
-use Tests\TestCaseExtended;
 
 class AdminControllerTest extends TestCase
 {
-    public function testAdminCanAccessDashboard()
+    public function testAdminCanAccessDashboard(): void
     {
         $user = User::factory()->create([
             'role' => User::ROLE_ADMIN,
@@ -26,7 +25,7 @@ class AdminControllerTest extends TestCase
         $response->assertViewIs('admin.dashboard');
     }
 
-    public function testNonAdminUserIsRedirectedToHome()
+    public function testNonAdminUserIsRedirectedToHome(): void
     {
         $user = User::factory()->create([
             'role' => User::ROLE_USER,
@@ -37,7 +36,7 @@ class AdminControllerTest extends TestCase
         $response->assertRedirect(route('index'));
     }
 
-    public function testDashboardShowsCorrectInformation()
+    public function testDashboardShowsCorrectInformation(): void
     {
         $admin = User::factory()->create([
             'role' => User::ROLE_ADMIN,
