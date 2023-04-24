@@ -73,7 +73,20 @@ class AdminControllerTest extends TestCase
         $shopServiceMock->expects($this->once())
             ->method('countSales')
             ->withAnyParameters()
-            ->willReturn([1 => 100, 2 => 100, 3 => 100, 4 => 100, 5 => 100, 6 => 100, 7 => 100, 8 => 100, 9 => 100, 10 => 100, 11 => 100, 12 => 100]);
+            ->willReturn([
+                1 => 100,
+                2 => 100,
+                3 => 100,
+                4 => 100,
+                5 => 100,
+                6 => 100,
+                7 => 100,
+                8 => 100,
+                9 => 100,
+                10 => 100,
+                11 => 100,
+                12 => 100
+            ]);
 
         app()->instance(DashboardService::class, $dashboardServiceMock);
         app()->instance(ShopService::class, $shopServiceMock);
