@@ -37,8 +37,8 @@ RUN apt install libsodium-dev -y
 RUN docker-php-ext-install bcmath pdo_mysql sodium zip
 
 # Install xdebug
-#RUN pecl install xdebug
-#RUN docker-php-ext-enable xdebug
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
 
 # Install gd
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev

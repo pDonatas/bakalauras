@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -30,6 +31,7 @@ class ShopFactory extends Factory
             'company_address' => fake()->address(),
             'company_phone' => fake()->phoneNumber(),
             'photo' => '/storage/images/shops/' . $newName,
+            'owner_id' => fake()->randomElement(User::all()->pluck('id')->toArray()),
         ];
     }
 }

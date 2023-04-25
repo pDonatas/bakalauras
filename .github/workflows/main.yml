@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  - pull_request
+  - push
+
+jobs:
+  tests:
+      name: Tests
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+
+        - name: Build the Docker image
+          run: docker-compose -f docker-compose-test.yml build
+
+        - name: Start containers
+          run: docker-compose -f docker-compose-test.yml up -d
+
+        - name: Install dependencies
+          run: docker exec bakis_php composer install && docker exec bakis_php yarn install && docker exec bakis_php yarn run build
+
+        - name: Run tests with phpunit/phpunit
+          run: docker exec bakis_php php artisan test --parallel --coverage-clover coverage.xml
+
+        - name: Fix code coverage paths
+          run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' coverage.xml
+
+        - name: SonarCloud Scan
+          uses: SonarSource/sonarcloud-github-action@master
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

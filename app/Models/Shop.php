@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
+ * @property int $id
  * @property int $shopAverageMark
  * @property int $services_count
  * @property int $workers_count

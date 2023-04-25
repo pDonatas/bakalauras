@@ -8,7 +8,7 @@ use App\Models\Photo;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Cache;
 
-readonly class AIService
+class AIService
 {
     public function __construct(
         private Client $client
