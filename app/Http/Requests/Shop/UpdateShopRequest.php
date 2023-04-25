@@ -19,6 +19,10 @@ class UpdateShopRequest extends FormRequest
             'description' => 'nullable|string',
             'owner_id' => 'required|exists:users,id',
             'workers' => 'nullable|array',
+            'photo' => 'nullable|sometimes|image',
+            'company_address' => 'sometimes|string|max:255',
+            'company_phone' => 'sometimes|string|max:255',
+            'company_code' => 'sometimes|string|max:255',
         ];
     }
 

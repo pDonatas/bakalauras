@@ -74,9 +74,9 @@ class Order extends Model
     protected function orderTypeText(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => match ($value) {
-                '1' => __('Paysera'),
-                '0' => __('Cash'),
+            get: fn () => match ($this->order_type) {
+                "1" => __('Paysera'),
+                "0" => __('Cash'),
                 default => __('Unknown'),
             },
         );

@@ -59,9 +59,8 @@
                                             <button type="button" class="btn btn-primary" id="click-cancel">
                                                 <i class="fas fa-times"></i>
                                             </button>
-                                            <input type="hidden" name="current_photo" id="current-photo" value="">
                                         </div>
-                                        <div id="current_photo"></div>
+                                        <div id="current_photo"><img src="{{ $order->current_photo }}" class="img-fluid" alt="Responsive image"></div>
                                     </div>
                                 </div>
                                 <input type="hidden" name="ai_photo" id="ai-input" value="{{ $order->ai_image }}">
@@ -74,7 +73,7 @@
                             <h3>{{ __('Example photo generation data') }}</h3>
                             <x-a-i-generator-component :service="$service" />
                             <div id="ai-images">
-                                <img src="{{ $order->ai_image }}" alt="AI image" class="img-fluid">
+                                <img src="{{ $order->ai_photo }}" alt="AI image" class="img-fluid">
                             </div>
                         </div>
                     </div>

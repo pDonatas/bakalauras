@@ -42,8 +42,7 @@ class AILanguageService
         if ('' === $replaced) {
             $query .= $this->translate($data['description']);
         } else {
-            $category = Category::find($category)->name;
-            $query .= $this->translate($category);
+            $query .= $replaced;
             $query .= ' with ';
 
             unset($data['category_id']);

@@ -106,16 +106,27 @@
                                             <h3>{{ __('About') }}</h3>
                                             {!! $shop->description !!}
                                             <hr>
-                                            <h3>{{ __('Address') }}</h3>
-                                            <iframe
-                                                width="600"
-                                                height="450"
-                                                style="border:0"
-                                                loading="lazy"
-                                                allowfullscreen
-                                                referrerpolicy="no-referrer-when-downgrade"
-                                                src="https://www.google.com/maps/embed/v1/place?key={{ config('google.maps_key') }}&q={{ $shop->company_address }}">
-                                            </iframe>
+                                            <h3>{{ __('Contacts') }}</h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <iframe
+                                                            width="600"
+                                                            height="450"
+                                                            style="border:0"
+                                                            loading="lazy"
+                                                            allowfullscreen
+                                                            referrerpolicy="no-referrer-when-downgrade"
+                                                            src="https://www.google.com/maps/embed/v1/place?key={{ config('google.maps_key') }}&q={{ $shop->company_address }}">
+                                                    </iframe>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">{{ __('Company address') }}: {{ $shop->company_address }}</li>
+                                                        <li class="list-group-item">{{ __('Company phone') }}: {{ $shop->company_phone }}</li>
+                                                        <li class="list-group-item">{{ __('Company code') }}: {{ $shop->company_code }}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

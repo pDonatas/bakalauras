@@ -192,7 +192,7 @@ class OrderController extends Controller
             $file = str_replace('public', '/storage', $file);
         }
 
-        if ('' !== ! $file) {
+        if ('' !== $file) {
             $order->current_photo = $file;
         }
 
