@@ -22,7 +22,10 @@
                             <label for="avatar">{{ __('Avatar') }}</label>
                             <input type="file" class="form-control" id="avatar" name="avatar">
                         </div>
-
+                        <div class="form-group">
+                            <label for="number">{{ __('Phone number') }}</label>
+                            <input type="text" class="form-control" id="number" name="phone_number" value="{{ $user->phone_number }}">
+                        </div>
                         <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                     </form>
                 </div>
