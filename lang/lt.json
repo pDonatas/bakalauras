@@ -251,5 +251,7 @@
     "Company name": "Pavadinimas",
     "Company code": "Įmonės kodas",
     "Company address": "Adresas",
-    "Company phone": "Telefonas"
+    "Company phone": "Telefonas",
+    "Avatar": "Nuotrauka",
+    "Phone number": "Telefono numeris"
 }
