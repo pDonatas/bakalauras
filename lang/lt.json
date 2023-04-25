@@ -253,5 +253,10 @@
     "Company address": "Adresas",
     "Company phone": "Telefonas",
     "Avatar": "Nuotrauka",
-    "Phone number": "Telefono numeris"
+    "Phone number": "Telefono numeris",
+    "Grade": "Įvertinti",
+    "Title": "Pavadinimas",
+    "Contacts": "Kontaktai",
+    "Current photo": "Dabartinė nuotrauka",
+    "Remove from comparison list": "Pašalinti iš palyginimo sąrašo"
 }

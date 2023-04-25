@@ -46,7 +46,10 @@
                         </div>
                         <div class="col-md-6">
                             <div id="ai-images">
-                                <img src="{{ $order->ai_image }}" alt="AI image" class="img-fluid">
+                                <label for="photo">{{ __('AI image') }}</label>
+                                <div class="input-group">
+                                    <div id="ai_photo"><img src="{{ $order->ai_photo }}" alt="" class="img-fluid"/></div>
+                                </div>
                             </div>
                         </div>
                     </div>

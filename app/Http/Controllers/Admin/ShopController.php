@@ -81,6 +81,7 @@ class ShopController extends Controller
 
         $request = $request->validated();
         $workers = $request['workers'] ?? [];
+        unset($request['photo']);
         unset($request['workers']);
 
         $shop->update($request);

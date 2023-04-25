@@ -45,7 +45,7 @@ class PaymentReceived extends Notification implements ShouldQueue
             ->line(trans('Service name: :serviceName', [
                 'serviceName' => $this->order->service->name,
             ]))
-            ->action(trans('View Order'), url("/user/orders/{$this->order->id}"));
+            ->action(trans('View Order'), url("/orders/{$this->order->id}"));
     }
 
     /**

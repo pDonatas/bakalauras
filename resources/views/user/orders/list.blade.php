@@ -36,7 +36,7 @@
                                     <td>{{ $order->service->shop->company_name }}</td>
                                     <td>{{ $order->service->worker->name }}</td>
                                     <td>{{ $order->comment }}</td>
-                                    <td>{{ $order->order_type }}</td>
+                                    <td>{{ $order->order_type_text }}</td>
                                     <td>
                                         {{ $order->statusText }}
                                         <a href="{{ route('orders.show', $order->id) }}">{{ __('Show') }}</a>

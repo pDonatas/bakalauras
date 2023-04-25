@@ -18,13 +18,13 @@
                                 {{ __('Edit') }}
                             </div>
                         </div>
-                        <form method="post" action="{{ route('admin.shops.update', $shop->id) }}">
+                        <form method="post" enctype="multipart/form-data" action="{{ route('admin.shops.update', $shop->id) }}">
                             @method('PUT')
                             @csrf
                             <div class="card-body">
                                 <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">{{ __('Name') }}</label>
+                                    <label for="name" class="form-label">{{ __('Company Name') }}</label>
                                     <input type="text" name="company_name" class="form-control" id="name" value="{{ $shop->company_name }}">
                                 </div>
                                 <div class="mb-3">
@@ -47,9 +47,6 @@
                                     <label for="workers" class="form-label">{{ __('Workers') }}</label>
                                     <select multiple name="workers[]" class="form-control" id="workers">
                                         @foreach ($users as $user)
-                                            @if($user->id == $shop->owner_id)
-                                                @continue
-                                            @endif
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
@@ -57,6 +54,18 @@
                                 <div class="mb-3">
                                     <label for="photo" class="form-label">{{ __('Main photo') }}</label>
                                     <input type="file" name="photo" class="form-control" id="photo" accept="image/*" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="company_address" class="form-label">{{ __('Company address') }}</label>
+                                    <input type="text" name="company_address" class="form-control" id="company_address" value="{{ $shop->company_address }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="company_code" class="form-label">{{ __('Company code') }}</label>
+                                    <input type="text" name="company_code" class="form-control" id="company_code" value="{{ $shop->company_code }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="company_phone" class="form-label">{{ __('Company phone') }}</label>
+                                    <input type="text" name="company_phone" class="form-control" id="company_phone" value="{{ $shop->company_phone }}">
                                 </div>
                             </div>
                             <div class="card-footer">
