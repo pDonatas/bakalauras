@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-    {{ $shop->name }}
+    {{ $shop->company_name }}
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                     <div class="card-title">
                         <div class="row">
                             <div class="col-md-6">
-                                {{ $shop->name }}
+                                {{ $shop->company_name }}
                             </div>
                             <div class="col-md-6">
                                 <div class="rating float-end">

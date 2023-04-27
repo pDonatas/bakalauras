@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\OrderTimeChanged;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCallendarRequest;
 use App\Models\Order;
@@ -57,11 +58,16 @@ class CalendarController extends Controller
             return response()->json(['error' => 'Order not found'], 404);
         }
 
+        $oldTime = $order->time;
+        $oldDate = $order->date;
+
         $order->update([
             'date' => $request->startDate,
             'time' => $request->startTime,
             'length' => $request->length,
         ]);
+
+        event(new OrderTimeChanged($order, $oldTime, $oldDate));
 
         $order->save();
 

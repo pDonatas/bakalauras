@@ -258,5 +258,17 @@
     "Title": "Pavadinimas",
     "Contacts": "Kontaktai",
     "Current photo": "Dabartinė nuotrauka",
-    "Remove from comparison list": "Pašalinti iš palyginimo sąrašo"
+    "Remove from comparison list": "Pašalinti iš palyginimo sąrašo",
+    "marks": "įvertinimai (-ų)",
+    "Email address": "El. paštas",
+    "Barber?": "Ar kirpėjas?",
+    "Role": "Rolė",
+    "Select workers": "Pasirinkite darbuotojus",
+    "Additional information": "Papildoma informacija",
+    "Selected example photo": "Pasirinkta pavyzdinė nuotrauka",
+    "Selected current photo": "Pasirinkta dabartinė nuotrauka",
+    "Service name": "Paslaugos pavadinimas",
+    "Order date": "Užsakymo data",
+    "Service date": "Paslaugos data",
+    "Order information": "Užsakymo informacija"
 }

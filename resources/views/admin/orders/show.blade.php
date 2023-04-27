@@ -7,7 +7,7 @@
             <div class="card card-primary card-outline">
                 <div class="card-header">
                     <div class="card-title">
-                        {{ __('Order') }}
+                        {{ __('Order information') }}
                     </div>
                 </div>
                 <x-auth-validation-errors class="background-black" :errors="$errors" />
