@@ -25,9 +25,9 @@ readonly class AdminController
         $user = \Auth::user();
         assert($user instanceof User);
         if (User::ROLE_ADMIN !== $user->role) {
-            $user = auth()->user()->loadCount('ownedShops', 'orders');
+            $user = auth()->user()->loadCount('ownedShops');
             $shopsCount = $user->owned_shops_count ?? 0;
-            $ordersCount = $user->orders_count ?? 0;
+            $ordersCount = Shop::where('owner_id', $user->id)->withCount('orders')->get()->sum('orders_count') ?? 0;
             $averageRating = $this->dashboardService->getAverageRating($user->id);
             $uniqueClientsCount = $this->dashboardService->getUniqueClientsCount($user->id);
             $shops = $user->ownedShops->map(function ($shop) use ($salesDateFrom, $salesDateTo) {
