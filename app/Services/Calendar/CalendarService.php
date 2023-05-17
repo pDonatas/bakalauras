@@ -8,7 +8,6 @@ use App\Events\OrderTimeChanged;
 use App\Http\Services\TimeCalculationService;
 use App\Models\Order;
 use App\Models\Service;
-use App\Models\User;
 use App\Models\WorkDay;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
