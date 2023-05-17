@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Calendar;
 
+use App\Events\OrderTimeChanged;
 use App\Http\Services\TimeCalculationService;
 use App\Models\Order;
 use App\Models\Service;
@@ -33,11 +34,13 @@ class CalendarService
             if (! in_array($weekDay, $enabledDays)) {
                 $newDate = $this->calculateNextAvailableDay($date, $time, $workDay, $order->service);
 
+                $oldDate = $order->date;
+                $oldTime = $order->time;
                 $order->date = $newDate[0];
                 $order->time = $newDate[1];
 
                 $order->save();
-                // TODO: Notify user
+                event(new OrderTimeChanged($order, $oldTime, $oldDate));
             }
         }
     }
