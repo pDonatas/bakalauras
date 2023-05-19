@@ -53,6 +53,14 @@
         background-color: var(--color-secondary);
         border: none;
     }
+
+    .card-title {
+        color: #fff;
+
+        a {
+            color: #fff;
+        }
+    }
 }
 
 .main {
@@ -79,7 +87,7 @@
 .navigation {
     .nav-pills {
         .nav-link {
-            color: var(--color-primary);
+            color: #fff;
         }
 
         .nav-link.active {
@@ -184,4 +192,26 @@
 
 .fr {
     float: right;
+}
+
+body {
+    background-color: white !important;
+}
+
+.main-carousel .swiper-slide {
+    height: 59vh !important;
+}
+
+.main-slider {
+    margin-top: 17%;
+    position: absolute;
+    z-index: 2;
+    left: 0%;
+    right: 0%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .main-slider {
+        margin-top: 37%;
+    }
 }

@@ -51,6 +51,17 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request, Service $service, PaymentServiceInterface $paymentService): RedirectResponse
     {
+        $currentPhoto = null;
+        if ($request->file('ai_photo_file')) {
+            $fileName = 'expected_photo_' . time() . '.png';
+            if (! is_dir(storage_path('app/public/expected_photos'))) {
+                mkdir(storage_path('app/public/expected_photos'), 0777, true);
+            }
+
+            $request->file('ai_photo_file')->storeAs('public/expected_photos', $fileName);
+
+            $currentPhoto = '/storage/expected_photos/' . $fileName;
+        }
         $file = '';
         if (isset($request['current_photo']) && $request['current_photo']) {
             // convert base64 to file
@@ -78,7 +89,10 @@ class OrderController extends Controller
         }
 
         $request = $request->validated();
-        unset($request['current_photo'], $request['current_photo_file']);
+        unset($request['current_photo'], $request['current_photo_file'], $request['ai_photo_file']);
+        if ($currentPhoto) {
+            $request['ai_photo'] = $currentPhoto;
+        }
 
         $order = new Order($request);
         $order->user()->associate(auth()->user());

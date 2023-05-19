@@ -15,11 +15,12 @@ app.post('/', async (req, res) => {
   const input = req.body?.input;
 
   if (input) {
+    let text = input;
     let translated = '';
     try {
-      const { text } = await translate(input, {to: 'en'});
+      text = await translate(input, {to: 'en'});
     } catch (e) {
-        const text = await callWithProxy(input);
+      text = await callWithProxy(input);
     }
 
     translated = text;
@@ -32,19 +33,19 @@ app.post('/', async (req, res) => {
 
 async function callWithProxy(input, usedProxies = []) {
   const list = fs.readFileSync('list.txt', 'utf8').split('\n');
-  const proxies = list.filter(proxy => !usedProxies.includes(proxy));
+  const proxies = list.filter((proxy) => !usedProxies.includes(proxy));
   const proxy = proxies[0];
   if (!proxy) {
     return input;
   }
-  console.log("trying with proxy: ", proxy);
+  console.log('trying with proxy: ', proxy);
 
   const agent = createHttpProxyAgent(`http://${proxy}`);
 
   let translated = '';
   try {
-      const { text } = await translate(input, {to: 'en', agent});
-      translated = text;
+    const {text} = await translate(input, {to: 'en', agent});
+    translated = text;
   } catch (e) {
     usedProxies.push(proxy);
     translated = await callWithProxy(input, usedProxies);

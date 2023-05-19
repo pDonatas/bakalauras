@@ -31,6 +31,7 @@ class StoreOrderRequest extends FormRequest
             'ai_photo' => ['nullable', 'string'],
             'current_photo_file' => ['nullable', 'file', 'image', 'max:2048'],
             'current_photo' => ['nullable'],
+            'ai_photo_file' => ['nullable', 'file', 'image', 'max:2048'],
         ];
     }
 }

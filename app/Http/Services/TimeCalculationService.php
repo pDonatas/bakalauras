@@ -35,6 +35,9 @@ class TimeCalculationService
         }
 
         foreach ($orders as $order) {
+            if (! $order->service->duration) {
+                continue;
+            }
             $orderTimeStart = Carbon::createFromTimeString($order->time);
             $orderTimeEnd = $orderTimeStart->copy()->addMinutes($order->service->duration);
 

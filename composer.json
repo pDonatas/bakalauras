@@ -27,7 +27,6 @@
         "laravel/breeze": "^1.11",
         "laravel/pint": "^1.1",
         "laravel/sail": "^1.0.1",
-        "laravel/telescope": "^4.14",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "nunomaduro/larastan": "^2.1",

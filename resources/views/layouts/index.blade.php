@@ -32,10 +32,9 @@
 
 @include('components.template.header')
 
+@include('components.index.header')
 <div class="container main">
-    <main id="main" data-aos="fade" data-aos-delay="1500">
-        @yield('content')
-    </main>
+    @yield('content')
 </div>
 
 @include('components.template.footer')

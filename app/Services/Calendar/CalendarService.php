@@ -21,7 +21,7 @@ class CalendarService
     public function handleUpdation(WorkDay $workDay): void
     {
         $provider = $workDay->user;
-        $orders = $provider->providedOrders;
+        $orders = $provider->providedOrders->where('date', '>=', Carbon::now()->format('Y-m-d'));
         $enabledDays = $workDay->days;
 
         foreach ($orders as $order) {
