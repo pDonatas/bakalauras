@@ -64,6 +64,9 @@
                                         </div>
                                     </div>
                                     <input type="hidden" name="ai_photo" id="ai-input" value="">
+                                    <div class="form-group hide">
+                                        <input type="file" accept="image/*" class="form-control" id="ai-photo" name="ai_photo_file" value="{{ old('ai_photo') }}">
+                                    </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">{{ __('Order') }}</button>
                                     </div>
@@ -72,6 +75,7 @@
                             <div class="col-md-6">
                                 <h3>{{ __('Example photo generation data') }}</h3>
                                 <x-a-i-generator-component :service="$service" />
+                                <button type="button" id="expected-photo-selector" class="btn btn-primary" onclick="$('#ai-photo').click();">Įkelti iš kompiuterio</button>
                                 <div id="ai-images"></div>
                             </div>
                         </div>
@@ -83,6 +87,16 @@
 
 @section('scripts')
     <script type="module">
+        document.getElementById('ai-photo').onchange = function () {
+            const elements = document.getElementsByClassName('ai-image');
+            while (elements.length > 0) elements[0].remove();
+            const element = document.createElement('div');
+            element.classList.add('col-md-12');
+            element.classList.add('mb-3');
+            element.classList.add('ai-image');
+            element.innerHTML = '<img src="' + URL.createObjectURL(this.files[0]) + '" class="img-fluid" alt="...">';
+            document.getElementById('ai-images').appendChild(element);
+        };
         const datepicker = document.getElementById('datepicker');
         const date = new TempusDominus(datepicker, {
                 localization: {

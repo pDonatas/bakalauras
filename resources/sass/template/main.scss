@@ -8,7 +8,7 @@
 /* Colors */
 :root {
     --color-default: #fafafa;
-    --color-primary: #27a776;
+    --color-primary: rgba(-9, 28, 31, 20.28);;
     --color-secondary: #161718;
 }
 
@@ -32,7 +32,7 @@ a {
 }
 
 a:hover {
-    color: #32cf93;
+    color: var(--color-secondary);
     text-decoration: none;
 }
 
@@ -1269,8 +1269,14 @@ h6 {
     background: var(--color-primary);
 }
 
+.btn:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
 .default-button:hover {
-    background: #2cbc85;
+    background: var(--color-secondary);
 }
 
 @media (max-width: 768px) {

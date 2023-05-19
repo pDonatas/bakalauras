@@ -70,6 +70,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.newsletter.index') }}" class="nav-link">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                        <p>
+                            {{ __('Newsletter') }}
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

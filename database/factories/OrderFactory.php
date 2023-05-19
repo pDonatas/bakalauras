@@ -21,8 +21,8 @@ class OrderFactory extends Factory
         return [
             'user_id' => $this->faker->numberBetween(1, 10),
             'service_id' => Service::inRandomOrder()->first()->id,
-            'date' => $this->faker->dateTimeBetween('-1 year', '+1 month'),
-            'time' => $this->faker->time(),
+            'date' => $this->faker->dateTimeBetween('-1 year', '+1 month')->format('Y-m-d'),
+            'time' => $this->faker->time('H:i'),
             'status' => $this->faker->randomElement([
                 Order::STATUS_CANCELED,
                 Order::STATUS_FULFILLED,
