@@ -54,10 +54,10 @@
                     <img src="{{ asset('assets/img/slide1.jpg') }}" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="{{ asset('assets/img/slide2.webp') }}" alt="">
+                    <img src="{{ asset('assets/img/slide2.jpg') }}" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="{{ asset('assets/img/slide3.jpeg') }}" alt="">
+                    <img src="{{ asset('assets/img/slide3.jpg') }}" alt="">
                 </div>
             </div>
         </div>

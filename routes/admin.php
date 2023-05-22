@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\NotificationJobsController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PhotoController;
@@ -26,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('calendar/update', [CalendarController::class, 'update'])->name('calendar.update');
             Route::resource('orders', OrdersController::class)->names('orders');
             Route::resource('shops.services.photos', PhotoController::class)->names('photos');
+            Route::post('notifications.update', [NotificationJobsController::class, 'update'])->name('notifications.update');
         });
 
         Route::middleware(['role:2'])->group(function () {

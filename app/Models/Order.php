@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -101,5 +102,12 @@ class Order extends Model
     public function shop(): HasOneThrough
     {
         return $this->hasOneThrough(Shop::class, Service::class, 'id', 'id', 'service_id', 'shop_id');
+    }
+
+    public function scopeProvidedActiveOrders(Builder $query, int $providerId): Builder
+    {
+        return $query
+            ->where('status', Order::STATUS_PAID)
+            ->where('user_id', $providerId);
     }
 }

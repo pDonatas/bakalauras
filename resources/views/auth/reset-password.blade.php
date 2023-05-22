@@ -4,7 +4,7 @@
         <div class="col-md-4">
             <div class="card card-default">
                 <div class="card-header">
-                    {{ __('Register') }}
+                    {{ __('Reset Password') }}
                 </div>
                 <div class="card-body">
                     <!-- Validation Errors -->

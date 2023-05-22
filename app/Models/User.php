@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -59,9 +60,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function scopeSubscribedToNewsletter(): \Illuminate\Database\Eloquent\Builder
+    public function scopeSubscribedToNewsletter(): Builder
     {
         return static::where('subscribed_to_newsletter', true);
+    }
+
+    /**
+     * @return HasOne<NotificationJob>
+     */
+    public function notificationJob(): HasOne
+    {
+        return $this->hasOne(NotificationJob::class);
     }
 
     public function isGranted(int $role): bool

@@ -46,5 +46,43 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card card-secondary card-outline">
+                        <div class="card-header">
+                            <div class="card-title">
+                                {{ __('Notifications manager') }}
+                            </div>
+                        </div>
+                        <form method="post" action="{{ route('admin.notifications.update') }}">
+                            @csrf
+                            <div class="card-body">
+                                <x-auth-validation-errors class="tw-mb-4" :errors="$errors" />
+                                <div class="mb-3 form-group">
+                                    <label for="notify_every">
+                                        {{ __('Notify every') }}
+                                    </label>
+                                    <input type="number" name="notify_every" class="form-control" id="notify_every" value="{{ $notifyEvery }}">
+                                </div>
+                                <div class="mb-3 form-group">
+                                    <label for="notify_period">
+                                        {{ __('Notify period') }}
+                                    </label>
+                                    <select id="notify_period" class="form-control" name="notify_period">
+                                        <option @if ($notifyPeriod == 0) selected @endif value="1">{{ __('Minutes') }}</option>
+                                        <option @if ($notifyPeriod == 1) selected @endif value="2">{{ __('Hours') }}</option>
+                                        <option @if ($notifyPeriod == 2) selected @endif value="3">{{ __('Days') }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

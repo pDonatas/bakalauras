@@ -277,5 +277,14 @@
     "Newsletters": "Naujienlaiškiai",
     "Text": "Tekstas",
     "List of Newsletters": "Naujienlaiškių sąrašas",
-    "Created At": "Sukurta"
+    "Created At": "Sukurta",
+    "Notifications manager": "Pranešimų tvarkymas",
+    "Notify every": "Periodas",
+    "Notify period": "Vienetas",
+    "Seconds": "Sekundės",
+    "Minutes": "Minutės",
+    "Hours": "Valandos",
+    "Days": "Dienos",
+    "Reminder of order #:orderNumber": "Priminimas apie užsakymą #:orderNumber",
+    "Date: :date": "Data: :date"
 }
