@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PhotoController;
@@ -30,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::middleware(['role:2'])->group(function () {
             Route::resource('users', UserController::class)->names('users');
             Route::resource('categories', CategoryController::class)->names('categories');
+            Route::resource('newsletters', NewsletterController::class)->names('newsletters');
         });
     });
 });

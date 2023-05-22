@@ -23,6 +23,7 @@ class UserEditRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users,email,' . $this->user()->id,
             'avatar' => 'nullable|sometimes|image',
             'phone_number' => 'nullable|sometimes|string|max:255',
+            'subscribed_to_newsletter' => 'sometimes'
         ];
     }
 }

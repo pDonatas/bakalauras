@@ -36,7 +36,8 @@ class User extends Authenticatable
         'password',
         'role',
         'phone_number',
-        'avatar'
+        'avatar',
+        'subscribed_to_newsletter'
     ];
 
     /**
@@ -57,6 +58,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function scopeSubscribedToNewsletter(): \Illuminate\Database\Eloquent\Builder
+    {
+        return static::where('subscribed_to_newsletter', true);
+    }
 
     public function isGranted(int $role): bool
     {
@@ -157,5 +163,13 @@ class User extends Authenticatable
     public function workDay(): HasOne
     {
         return $this->hasOne(WorkDay::class);
+    }
+
+    /**
+     * @return HasMany<Newsletter>
+     */
+    public function newsletters(): HasMany
+    {
+        return $this->hasMany(Newsletter::class, 'created_by');
     }
 }
