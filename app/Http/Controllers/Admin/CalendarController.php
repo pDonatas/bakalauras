@@ -80,7 +80,10 @@ class CalendarController extends Controller
 
         $workDays = $workDay ? $workDay->days : [];
 
-        return view('admin.calendar.manage', compact('workDays', 'workDay'));
+        $notifyEvery = auth()->user()->notificationJob->notify_every ?? 0;
+        $notifyPeriod = auth()->user()->notificationJob->notify_period ?? 0;
+
+        return view('admin.calendar.manage', compact('workDays', 'workDay', 'notifyEvery', 'notifyPeriod'));
     }
 
     public function update(UpdateCallendarRequest $request): RedirectResponse
