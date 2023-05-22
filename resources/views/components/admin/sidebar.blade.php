@@ -71,10 +71,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.newsletter.index') }}" class="nav-link">
+                    <a href="{{ route('admin.newsletters.index') }}" class="nav-link">
                         <i class="fa-solid fa-envelope-open-text"></i>
                         <p>
-                            {{ __('Newsletter') }}
+                            {{ __('Newsletters') }}
                         </p>
                     </a>
                 </li>

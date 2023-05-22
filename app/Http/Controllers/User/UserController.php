@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserEditRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,7 +17,7 @@ class UserController extends Controller
 {
     public function profile(): View
     {
-        $user = \Auth::user()->loadCount('orders', 'ownedShops', 'marks');
+        $user = Auth::user()->loadCount('orders', 'ownedShops', 'marks');
 
         return view('user.profile', ['user' => $user]);
     }
@@ -30,14 +31,14 @@ class UserController extends Controller
 
     public function edit(): View
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         return view('user.edit', ['user' => $user]);
     }
 
     public function update(UserEditRequest $request): RedirectResponse
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         assert($user instanceof User);
 
@@ -49,9 +50,11 @@ class UserController extends Controller
             $file = Storage::disk('public')->putFileAs('avatars', $request->file('avatar'), $fileName);
 
             $user->avatar = '/storage/' . $file;
-
-            $user->save();
         }
+
+        $user->subscribed_to_newsletter = $request->has('subscribed_to_newsletter');
+
+        $user->save();
 
         return redirect()->route('user.profile');
     }

@@ -7,6 +7,7 @@
         <div class="col-md-12">
             <div class="card card-default">
                 <div class="card-body">
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     <form enctype="multipart/form-data" method="post" action="{{ route('profile.update') }}">
                         @method('PUT')
                         @csrf
@@ -25,6 +26,10 @@
                         <div class="form-group">
                             <label for="number">{{ __('Phone number') }}</label>
                             <input type="text" class="form-control" id="number" name="phone_number" value="{{ $user->phone_number }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="subscribed_to_newsletter">{{ __('Subscribed to newsletter') }}</label>
+                            <input type="checkbox" id="subscribed_to_newsletter" name="subscribed_to_newsletter" {{ $user->subscribed_to_newsletter ? 'checked' : '' }}>
                         </div>
                         <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                     </form>

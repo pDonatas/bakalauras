@@ -60,25 +60,27 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
 
 <script src="https://cdn.tiny.cloud/1/h60jy9aigdsikubgsdndpy2xsz8tbufbi44e2vrsbqccw3n3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
 <script>
-    <!-- Delete modal -->
-    function deleteItem(url)
-    {
-        $('#deleteModal').modal('show');
-        $('#deleteModal .btn-danger').click(function() {
-            $.ajax({
-                url: url,
-                type: 'DELETE',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                },
-                success: function() {
-                    $('#deleteModal').modal('hide');
-                    location.reload();
-                }
+        <!-- Delete modal -->
+        function deleteItem(url) {
+            $('#deleteModal').modal('show');
+            $('#deleteModal .btn-danger').click(function () {
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function () {
+                        $('#deleteModal').modal('hide');
+                        location.reload();
+                    }
+                });
             });
-        });
-    }
+        }
 </script>
 <script>
     tinymce.init({

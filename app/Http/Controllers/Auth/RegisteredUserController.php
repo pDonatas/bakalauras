@@ -41,6 +41,7 @@ class RegisteredUserController extends Controller
             ]);
 
             $user->shops()->attach($shop);
+            $shop->workers()->attach($user);
         }
 
         event(new Registered($user));
