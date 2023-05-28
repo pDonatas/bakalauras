@@ -26,7 +26,7 @@
                         </div>
                         <div class="tw-flex tw-items-center tw-justify-end mt-4">
                             @if (Route::has('password.request'))
-                                <a class="tw-underline tw-text-sm tw-text-gray-600 hover:tw-text-gray-900" href="{{ route('password.request') }}">
+                                <a class="tw-underline tw-text-sm text-white" href="{{ route('password.request') }}">
                                     {{ __('Forgot your password?') }}
                                 </a>
                             @endif

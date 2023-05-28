@@ -3,7 +3,7 @@
 
         <a href="{{ route('index') }}" class="logo d-flex align-items-center me-auto me-lg-0">
             <i class="bi bi-camera"></i>
-            <h1>TheBarbers</h1>
+            <h1>HairDressers</h1>
         </a>
 
         <nav id="navbar" class="navbar">
